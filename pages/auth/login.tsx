@@ -3,6 +3,7 @@ import { getProviders, signIn } from "next-auth/react"
 import Image from "next/image"
 import { BsFacebook } from "react-icons/bs"
 import { useMediaQuery } from "../../hooks"
+import { useEffect, useState } from "react"
 
 import Grid from "../../assets/grid.svg"
 import GridSm from "../../assets/grid-sm.svg"
@@ -10,8 +11,16 @@ import GridLg from "../../assets/grid-lg.svg"
 
 const Login = ({ providers }: { providers: any }) => {
   const provider: any = Object.values(providers)[0]
-  const mediaLg = useMediaQuery("(min-width: 1024px)")
-  const mediaSm = useMediaQuery("(min-width: 640px)")
+  const mediaLg_ = useMediaQuery("(min-width: 1024px)")
+  const mediaSm_ = useMediaQuery("(min-width: 640px)")
+
+  const [mediaLg, setMediaLg] = useState<boolean>(false)
+  const [mediaSm, setMediaSm] = useState<boolean>(false)
+
+  useEffect(() => {
+    setMediaLg(mediaLg_)
+    setMediaSm(mediaSm_)
+  }, [])
 
   return (
     <main className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden">

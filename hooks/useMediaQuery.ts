@@ -11,6 +11,10 @@ function useMediaQuery(query: string): boolean {
 
   const [matches, setMatches] = useState<boolean>(getMatches(query))
 
+  // useEffect(() => {
+  //   setMatches(window.matchMedia(query).matches)
+  // }, [])
+
   function handleChange() {
     setMatches(getMatches(query))
   }
