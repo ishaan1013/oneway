@@ -1,9 +1,16 @@
 import Head from "next/head"
 import Image from "next/image"
-import LoginButton from "../components/landing/loginButton"
-import styles from "../styles/Home.module.css"
+import { useMediaQuery } from "../hooks"
+import Grid from "../assets/grid.svg"
+import GridSm from "../assets/grid-sm.svg"
+import GridLg from "../assets/grid-lg.svg"
 
-export default function Home() {
+import LoginButton from "../components/landing/loginButton"
+
+const Home = () => {
+  const mediaLg = useMediaQuery("(min-width: 1024px)")
+  const mediaSm = useMediaQuery("(min-width: 640px)")
+
   return (
     <div>
       <Head>
@@ -13,9 +20,45 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex h-screen w-screen flex-col items-center justify-center">
+      <main className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
+        <div className="absolute h-full w-full">
+          {mediaLg ? (
+            <div className="grid-gradient relative mt-[60vh] h-[40vh] w-full">
+              <Image
+                src={GridLg}
+                className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+                alt=""
+                objectFit="cover"
+                layout="fill"
+              />
+            </div>
+          ) : mediaSm ? (
+            <div className="grid-gradient relative mt-[55vh] h-[45vh] w-full">
+              <Image
+                src={Grid}
+                className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+                alt=""
+                objectFit="cover"
+                layout="fill"
+              />
+            </div>
+          ) : (
+            <div className="grid-gradient relative mt-[55vh] h-[45vh] w-full">
+              <Image
+                src={GridSm}
+                className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+                alt=""
+                objectFit="cover"
+                layout="fill"
+              />
+            </div>
+          )}
+        </div>
+
         <LoginButton />
       </main>
     </div>
   )
 }
+
+export default Home

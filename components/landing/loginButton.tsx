@@ -1,28 +1,37 @@
 import { useSession, signIn, signOut } from "next-auth/react"
+import { IoMdLogIn, IoMdLogOut } from "react-icons/io"
 
 const LoginButton = () => {
   const { data: session } = useSession()
   if (session) {
     return (
       <>
-        <p className="mb-6 max-w-3xl text-center text-xs text-white/60">
+        <p className="mb-6 max-w-3xl text-center text-xs text-white/50">
           {JSON.stringify(session)}
         </p>
-        <button
-          className="rounded border-[1px] border-white/50 bg-white/5 py-1 px-3 duration-100 hover:bg-white/10"
-          onClick={() => signOut()}>
-          Sign Out
-        </button>
+        <div className="custom-gradient group relative z-10 rounded p-[1px]">
+          <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
+          <button
+            className="relative flex select-none items-center rounded bg-black p-[1px] py-2 pl-4 pr-5 text-xl font-semibold"
+            onClick={() => signOut()}>
+            <IoMdLogOut className="mr-4" />
+            Sign out
+          </button>
+        </div>
       </>
     )
   }
   return (
     <>
-      <button
-        className="rounded border-[1px] border-white/50 bg-white/5 py-1 px-3 duration-100 hover:bg-white/10"
-        onClick={() => signIn()}>
-        Sign in
-      </button>
+      <div className="custom-gradient group relative z-10 rounded p-[1px]">
+        <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
+        <button
+          className="relative flex select-none items-center rounded bg-black p-[1px] py-2 pl-4 pr-5 text-xl font-semibold"
+          onClick={() => signIn()}>
+          <IoMdLogIn className="mr-4" />
+          Sign in
+        </button>
+      </div>
     </>
   )
 }

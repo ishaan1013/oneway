@@ -36,9 +36,5 @@ a {
 }
 
 .grid-gradient {
-  mask-image: linear-gradient(
-    transparent,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.3)
-  );
+  mask-image: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
 }
