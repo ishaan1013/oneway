@@ -31,6 +31,9 @@ const Home = () => {
       </Head>
 
       <main className="relative z-10 flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
+        <div className="absolute">
+          <Image src={} alt="" />
+        </div>
         <div className="absolute -z-10 h-full w-full">
           {/* {`The view port is ${
             mediaLg

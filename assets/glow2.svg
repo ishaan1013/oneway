@@ -1,0 +1,29 @@
+<svg width="1300" height="1300" viewBox="0 0 1300 1300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_103_2)">
+<rect width="1300" height="1300" fill="black"/>
+<g style="mix-blend-mode:screen">
+<circle cx="650" cy="650" r="600" transform="rotate(-6 650 650)" fill="url(#paint0_radial_103_2)" fill-opacity="0.3"/>
+</g>
+<g style="mix-blend-mode:screen">
+<circle cx="650" cy="650" r="600" transform="rotate(10 650 650)" fill="url(#paint1_radial_103_2)" fill-opacity="0.25"/>
+</g>
+</g>
+<defs>
+<radialGradient id="paint0_radial_103_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(650 992) rotate(-90) scale(960.5)">
+<stop offset="0.261559"/>
+<stop offset="0.445833"/>
+<stop offset="0.76875" stop-color="#0D0D0D"/>
+<stop offset="0.883333" stop-color="#604008"/>
+<stop offset="1" stop-color="#F39A00"/>
+</radialGradient>
+<radialGradient id="paint1_radial_103_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(650 992) rotate(-90) scale(960.5)">
+<stop offset="0.261559"/>
+<stop offset="0.634788"/>
+<stop offset="0.805208" stop-color="#0D0D0D"/>
+<stop offset="1" stop-color="#B3056D"/>
+</radialGradient>
+<clipPath id="clip0_103_2">
+<rect width="1300" height="1300" fill="white"/>
+</clipPath>
+</defs>
+</svg>
