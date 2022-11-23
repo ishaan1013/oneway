@@ -107,21 +107,21 @@ const Home = () => {
   )
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const session = await getSession(context)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
 
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/auth",
-//         permanent: false,
-//       },
-//     }
-//   }
+  if (session) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    }
+  }
 
-//   return {
-//     props: { session },
-//   }
-// }
+  return {
+    props: { session },
+  }
+}
 
 export default Home
