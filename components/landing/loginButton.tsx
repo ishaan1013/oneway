@@ -29,7 +29,7 @@ const LoginButton = () => {
           className="relative flex select-none items-center rounded bg-black p-[1px] py-3 pl-5 pr-7 text-2xl font-semibold"
           onClick={() => signIn()}>
           <IoMdLogIn className="mr-4" />
-          Sign in
+          Get Started
         </button>
       </div>
     </>

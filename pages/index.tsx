@@ -9,6 +9,11 @@ import GridLg from "../assets/grid-lg.svg"
 import Glow from "../assets/glow.png"
 
 import LoginButton from "../components/landing/loginButton"
+import Link from "next/link"
+import { GetServerSideProps } from "next"
+import { authOptions } from "./api/auth/[...nextauth]"
+import { getSession, useSession } from "next-auth/react"
+import { Session, unstable_getServerSession } from "next-auth"
 
 const Home = () => {
   const mediaLg_ = useMediaQuery("(min-width: 1024px)")
@@ -32,11 +37,11 @@ const Home = () => {
       </Head>
 
       <main className="relative z-10 flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
-        <div className="absolute flex h-full w-full items-center justify-center">
+        <div className="absolute -z-20 flex h-full w-full items-center justify-center">
           <Image
             src={Glow}
             alt=""
-            className="aspect-[5/3] w-[90%] max-w-5xl -translate-y-6 opacity-50"
+            className="aspect-[5/3] w-[90%] max-w-5xl -translate-y-12 grayscale"
           />
         </div>
         <div className="absolute -z-10 h-full w-full">
@@ -80,18 +85,43 @@ const Home = () => {
           )}
         </div>
 
-        {/* <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
-          OneWay
+        <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
+          {/* OneWay */}
+          Text 1
         </h2>
-        <h1 className="mb-16 text-center text-8xl font-bold mix-blend-soft-light">
-          Social Media
+        <h1 className="mb-16 text-center text-8xl font-bold">
+          {/* Social Media */}
+          Text 2
           <br />
-          <span className="italic">The Right Way</span>
-        </h1> */}
+          {/* <span className="italic">The Right Way</span> */}
+          <span className="italic opacity-75">Text 3</span>
+        </h1>
         <LoginButton />
+        <Link
+          href="/about"
+          className="mt-3 text-lg font-medium opacity-90 duration-200 hover:opacity-50">
+          What is OneWay?
+        </Link>
       </main>
     </div>
   )
 }
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const session = await getSession(context)
+
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/auth",
+//         permanent: false,
+//       },
+//     }
+//   }
+
+//   return {
+//     props: { session },
+//   }
+// }
 
 export default Home
