@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import Grid from "../assets/grid.svg"
 import GridSm from "../assets/grid-sm.svg"
 import GridLg from "../assets/grid-lg.svg"
+import Glow from "../assets/glow.png"
 
 import LoginButton from "../components/landing/loginButton"
 
@@ -31,8 +32,12 @@ const Home = () => {
       </Head>
 
       <main className="relative z-10 flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
-        <div className="absolute">
-          <Image src={} alt="" />
+        <div className="absolute flex h-full w-full items-center justify-center">
+          <Image
+            src={Glow}
+            alt=""
+            className="aspect-[5/3] w-[90%] max-w-5xl -translate-y-6 opacity-50"
+          />
         </div>
         <div className="absolute -z-10 h-full w-full">
           {/* {`The view port is ${
@@ -75,14 +80,14 @@ const Home = () => {
           )}
         </div>
 
-        <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
+        {/* <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
           OneWay
         </h2>
         <h1 className="mb-16 text-center text-8xl font-bold mix-blend-soft-light">
           Social Media
           <br />
           <span className="italic">The Right Way</span>
-        </h1>
+        </h1> */}
         <LoginButton />
       </main>
     </div>
