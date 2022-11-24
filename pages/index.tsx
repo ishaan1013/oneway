@@ -3,17 +3,14 @@ import Image from "next/image"
 import { useMediaQuery } from "../hooks"
 import { useEffect, useState } from "react"
 
+import LoginButton from "../components/landing/loginButton"
+import { GetServerSideProps } from "next"
+import { getSession } from "next-auth/react"
+
 import Grid from "../assets/grid.svg"
 import GridSm from "../assets/grid-sm.svg"
 import GridLg from "../assets/grid-lg.svg"
 import Glow from "../assets/glow.png"
-
-import LoginButton from "../components/landing/loginButton"
-import Link from "next/link"
-import { GetServerSideProps } from "next"
-import { authOptions } from "./api/auth/[...nextauth]"
-import { getSession, useSession } from "next-auth/react"
-import { Session, unstable_getServerSession } from "next-auth"
 
 const Home = () => {
   const mediaLg_ = useMediaQuery("(min-width: 1024px)")
@@ -37,13 +34,14 @@ const Home = () => {
       </Head>
 
       <main className="relative z-10 flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
-        <div className="absolute -z-20 flex h-full w-full items-center justify-center">
+        {/* <div className="absolute -z-20 flex h-full w-full items-center justify-center">
           <Image
             src={Glow}
             alt=""
             className="aspect-[5/3] w-[90%] max-w-5xl -translate-y-12 grayscale"
           />
-        </div>
+        </div> */}
+        <div className="custom-gradient absolute -top-48 -z-20 h-48 w-2/3 max-w-6xl -rotate-12 opacity-50 blur-[150px]" />
         <div className="absolute -z-10 h-full w-full">
           {/* {`The view port is ${
             mediaLg
@@ -85,23 +83,18 @@ const Home = () => {
           )}
         </div>
 
-        <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
-          {/* OneWay */}
-          Text 1
-        </h2>
+        {/* <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
+          OneWay
+        </h2> */}
         <h1 className="mb-16 text-center text-8xl font-bold">
-          {/* Social Media */}
-          Text 2
+          <span className="opacity-70">Social Media</span>
           <br />
-          {/* <span className="italic">The Right Way</span> */}
-          <span className="italic opacity-75">Text 3</span>
+          <span className="italic">One Way</span>
         </h1>
         <LoginButton />
-        <Link
-          href="/about"
-          className="mt-3 text-lg font-medium opacity-90 duration-200 hover:opacity-50">
-          What is OneWay?
-        </Link>
+        <button className="mt-3 text-lg font-medium opacity-90 duration-200 hover:opacity-50">
+          About This Project
+        </button>
       </main>
     </div>
   )
