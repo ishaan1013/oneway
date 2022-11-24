@@ -1,21 +1,15 @@
 import Head from "next/head"
-import Image from "next/image"
-import { useMediaQuery } from "../../hooks"
-import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import Link from "next/link"
 
-import Grid from "../assets/grid.svg"
-import GridSm from "../assets/grid-sm.svg"
-import GridLg from "../assets/grid-lg.svg"
-import Glow from "../assets/glow.png"
+import { getSession } from "next-auth/react"
+import { GetServerSideProps } from "next"
 
 import LoginButton from "../../components/landing/loginButton"
-import Link from "next/link"
-import { GetServerSideProps } from "next"
-import { authOptions } from "../api/auth/[...nextauth]"
-import { getSession, useSession } from "next-auth/react"
-import { Session, unstable_getServerSession } from "next-auth"
 
 const Home = () => {
+  const router = useRouter()
+
   return (
     <div>
       <Head>
@@ -26,8 +20,61 @@ const Home = () => {
       </Head>
 
       <main className="relative z-10 flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
-        dashboard
-        <LoginButton />
+        {/* dashboard */}
+
+        <nav className="fixed top-0 w-screen border-b-[1px] border-white/20 bg-black/50 px-16 pt-4 backdrop-blur-md">
+          <div className="flex w-full items-center justify-between">
+            <Link
+              href="/dashboard"
+              className="select-none text-2xl font-semibold">
+              OneWay
+            </Link>
+
+            <LoginButton />
+          </div>
+
+          <ul className="mt-2 list-none space-x-3">
+            <li
+              className={`inline-block ${
+                router.pathname == "/dashboard"
+                  ? "border-b-[2px] border-white"
+                  : ""
+              }
+                 pb-1 duration-200`}>
+              <Link
+                href="/dashboard"
+                className={`rounded px-2 py-[3px] duration-200 hover:bg-white/[0.15]`}>
+                Overview
+              </Link>
+            </li>
+            <li
+              className={`inline-block ${
+                router.pathname == "/dashboard/create"
+                  ? "border-b-[2px] border-white"
+                  : ""
+              }
+                 pb-1 duration-200`}>
+              <Link
+                href="/dashboard/create"
+                className={`rounded px-2 py-[3px] duration-200 hover:bg-white/[0.15]`}>
+                Create
+              </Link>
+            </li>
+            <li
+              className={`inline-block ${
+                router.pathname == "/dashboard/settings"
+                  ? "border-b-[2px] border-white"
+                  : ""
+              }
+                 pb-1 duration-200`}>
+              <Link
+                href="/dashboard/settings"
+                className={`rounded px-2 py-[3px] duration-200 hover:bg-white/[0.15]`}>
+                Settings
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </main>
     </div>
   )

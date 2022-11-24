@@ -63,7 +63,7 @@ const Login = ({ providers }: { providers: any }) => {
         key={provider.name}>
         <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
         <button
-          className="relative flex select-none items-center rounded bg-black p-[1px] py-2 pl-4 pr-5 text-xl font-semibold"
+          className="relative flex select-none items-center rounded bg-black py-2 pl-4 pr-5 text-xl font-semibold"
           onClick={() =>
             signIn(provider.id, { callbackUrl: "http://localhost:3000/" })
           }>
