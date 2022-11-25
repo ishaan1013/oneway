@@ -28,7 +28,7 @@ const Home = () => {
           <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
           <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
           <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-blue-500 md:h-[350px]"></div>
           <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
           <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
           <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>

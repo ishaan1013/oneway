@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import LoginButton from "../landing/loginButton"
 
 import { AiOutlineUser } from "react-icons/ai"
-import UserIcon from "./userIcon"
+import UserDropdown from "./userDropdown"
 
 const DashboardNav = () => {
   const router = useRouter()
@@ -76,7 +76,7 @@ const DashboardNav = () => {
           </ul>
         </div>
 
-        <UserIcon />
+        <UserDropdown />
       </div>
     </nav>
   )
