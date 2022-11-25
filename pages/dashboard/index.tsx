@@ -1,16 +1,11 @@
 import Head from "next/head"
-import { useRouter } from "next/router"
-import Link from "next/link"
 
 import { getSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
 
-import { CgFormatSlash } from "react-icons/cg"
-import LoginButton from "../../components/landing/loginButton"
+import DashboardNav from "../../components/dashboard/nav"
 
 const Home = () => {
-  const router = useRouter()
-
   return (
     <div>
       <Head>
@@ -23,87 +18,20 @@ const Home = () => {
       <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 md:px-16">
         {/* dashboard */}
 
-        <nav className="xs:px-8 fixed top-0 z-50 w-screen overflow-hidden border-b-[1px] border-white/20 bg-black/50 px-4 pt-4 backdrop-blur-md md:px-16">
-          <div className="custom-gradient xs:w-[250px] xs:blur-2xl absolute -left-24 -z-10 h-2/3 w-[100px] rotate-180 opacity-80 blur-xl md:w-[330px] md:blur-3xl" />
-
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center">
-              <Link href="/dashboard" className="select-none text-xl font-bold">
-                OneWay
-              </Link>
-
-              <div className="mx-4 h-5 w-[1.5px] rotate-12 bg-white/50" />
-
-              <p className="font-medium">@ig_account</p>
-            </div>
-
-            <LoginButton />
-          </div>
-
-          <ul className="mt-3 list-none space-x-3">
-            <li
-              className={`inline-block ${
-                router.pathname == "/dashboard"
-                  ? "border-b-[1px] border-white"
-                  : ""
-              }
-                 pb-2 duration-200`}>
-              <Link
-                href="/dashboard"
-                className={`rounded px-2 py-1 font-light duration-200 ${
-                  router.pathname == "/dashboard"
-                    ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
-                }`}>
-                Overview
-              </Link>
-            </li>
-            <li
-              className={`inline-block ${
-                router.pathname == "/dashboard/create"
-                  ? "border-b-[1px] border-white"
-                  : ""
-              }
-                 pb-2 duration-200`}>
-              <Link
-                href="/dashboard/create"
-                className={`rounded px-2 py-1 font-light duration-200 ${
-                  router.pathname == "/dashboard/create"
-                    ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
-                }`}>
-                Create
-              </Link>
-            </li>
-            <li
-              className={`inline-block ${
-                router.pathname == "/dashboard/settings"
-                  ? "border-b-[2px] border-white"
-                  : ""
-              }
-                 pb-2 duration-200`}>
-              <Link
-                href="/dashboard/settings"
-                className={`rounded px-2 py-1 font-light duration-200 ${
-                  router.pathname == "/dashboard/settings"
-                    ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
-                }`}>
-                Settings
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <DashboardNav />
 
         <div className="mb-3 w-full">
           <h2 className="text-left text-xl font-bold">Account Overview</h2>
-          <p className="opacity-50">Hover images for options.</p>
+          <p className="text-sm opacity-50">Hover images for options.</p>
         </div>
         <div className="xs:auto-cols-[300px] slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 md:auto-cols-[350px] ">
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
         </div>
       </main>
     </div>
