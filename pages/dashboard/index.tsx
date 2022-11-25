@@ -20,10 +20,12 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="relative z-10 flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
+      <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 md:px-16">
         {/* dashboard */}
 
-        <nav className="fixed top-0 w-screen border-b-[1px] border-white/20 bg-black/50 px-16 pt-4 backdrop-blur-md">
+        <nav className="xs:px-8 fixed top-0 z-50 w-screen overflow-hidden border-b-[1px] border-white/20 bg-black/50 px-4 pt-4 backdrop-blur-md md:px-16">
+          <div className="custom-gradient xs:w-[250px] xs:blur-2xl absolute -left-24 -z-10 h-2/3 w-[100px] rotate-180 opacity-80 blur-xl md:w-[330px] md:blur-3xl" />
+
           <div className="flex w-full items-center justify-between">
             <div className="flex items-center">
               <Link href="/dashboard" className="select-none text-xl font-bold">
@@ -92,6 +94,17 @@ const Home = () => {
             </li>
           </ul>
         </nav>
+
+        <div className="mb-3 w-full">
+          <h2 className="text-left text-xl font-bold">Account Overview</h2>
+          <p className="opacity-50">Hover images for options.</p>
+        </div>
+        <div className="xs:auto-cols-[300px] slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 md:auto-cols-[350px] ">
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
+          <div className="xs:h-[300px] aspect-square h-[250px] rounded bg-white/5 md:h-[350px]"></div>
+        </div>
       </main>
     </div>
   )
