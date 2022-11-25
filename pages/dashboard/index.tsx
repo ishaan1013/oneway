@@ -5,6 +5,7 @@ import Link from "next/link"
 import { getSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
 
+import { CgFormatSlash } from "react-icons/cg"
 import LoginButton from "../../components/landing/loginButton"
 
 const Home = () => {
@@ -24,39 +25,51 @@ const Home = () => {
 
         <nav className="fixed top-0 w-screen border-b-[1px] border-white/20 bg-black/50 px-16 pt-4 backdrop-blur-md">
           <div className="flex w-full items-center justify-between">
-            <Link
-              href="/dashboard"
-              className="select-none text-2xl font-semibold">
-              OneWay
-            </Link>
+            <div className="flex items-center">
+              <Link href="/dashboard" className="select-none text-xl font-bold">
+                OneWay
+              </Link>
+
+              <div className="mx-4 h-5 w-[1.5px] rotate-12 bg-white/50" />
+
+              <p className="font-medium">@ig_account</p>
+            </div>
 
             <LoginButton />
           </div>
 
-          <ul className="mt-2 list-none space-x-3">
+          <ul className="mt-3 list-none space-x-3">
             <li
               className={`inline-block ${
                 router.pathname == "/dashboard"
-                  ? "border-b-[2px] border-white"
+                  ? "border-b-[1px] border-white"
                   : ""
               }
-                 pb-1 duration-200`}>
+                 pb-2 duration-200`}>
               <Link
                 href="/dashboard"
-                className={`rounded px-2 py-[3px] duration-200 hover:bg-white/[0.15]`}>
+                className={`rounded px-2 py-1 font-light duration-200 ${
+                  router.pathname == "/dashboard"
+                    ? "opacity-100 hover:bg-white/[0.15]"
+                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
+                }`}>
                 Overview
               </Link>
             </li>
             <li
               className={`inline-block ${
                 router.pathname == "/dashboard/create"
-                  ? "border-b-[2px] border-white"
+                  ? "border-b-[1px] border-white"
                   : ""
               }
-                 pb-1 duration-200`}>
+                 pb-2 duration-200`}>
               <Link
                 href="/dashboard/create"
-                className={`rounded px-2 py-[3px] duration-200 hover:bg-white/[0.15]`}>
+                className={`rounded px-2 py-1 font-light duration-200 ${
+                  router.pathname == "/dashboard/create"
+                    ? "opacity-100 hover:bg-white/[0.15]"
+                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
+                }`}>
                 Create
               </Link>
             </li>
@@ -66,10 +79,14 @@ const Home = () => {
                   ? "border-b-[2px] border-white"
                   : ""
               }
-                 pb-1 duration-200`}>
+                 pb-2 duration-200`}>
               <Link
                 href="/dashboard/settings"
-                className={`rounded px-2 py-[3px] duration-200 hover:bg-white/[0.15]`}>
+                className={`rounded px-2 py-1 font-light duration-200 ${
+                  router.pathname == "/dashboard/settings"
+                    ? "opacity-100 hover:bg-white/[0.15]"
+                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
+                }`}>
                 Settings
               </Link>
             </li>

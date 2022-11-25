@@ -12,10 +12,10 @@ const LoginButton = () => {
         <div className="custom-gradient group relative z-10 rounded p-[1px]">
           <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
           <button
-            className="relative flex select-none items-center rounded bg-black py-1 pl-2 pr-3 font-semibold"
+            className="relative flex select-none items-center rounded bg-black py-1 pl-2 pr-3 font-medium"
             onClick={() => signOut()}>
             <IoMdLogOut className="mr-4" />
-            Sign out
+            Sign Out
           </button>
         </div>
       </>
