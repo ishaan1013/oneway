@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import LoginButton from "../landing/loginButton"
+import LoginButton from "../landing/authButton"
 
 import { AiOutlineUser } from "react-icons/ai"
 import UserDropdown from "./userDropdown"

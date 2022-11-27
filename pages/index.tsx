@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useMediaQuery } from "../hooks"
 import { useEffect, useState } from "react"
 
-import LoginButton from "../components/landing/loginButton"
+import LoginButton from "../components/landing/authButton"
 import { GetServerSideProps } from "next"
 import { getSession } from "next-auth/react"
 
