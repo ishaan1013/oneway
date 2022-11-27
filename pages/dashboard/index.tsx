@@ -2,7 +2,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { getSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
-import { FiPlus } from "react-icons/fi"
+import { FiFilePlus } from "react-icons/fi"
 
 import DashboardNav from "../../components/dashboard/nav"
 
@@ -23,13 +23,13 @@ const Dashboard = () => {
 
         <div className="mb-3 flex w-full items-center justify-between">
           <div>
-            <h2 className="text-left text-xl font-bold">Account Overview</h2>
+            <h1 className="text-left text-xl font-bold">Account Overview</h1>
             <p className="text-sm opacity-50">Hover images for options.</p>
           </div>
 
           <Link href="/dashboard/create">
-            <button className="relative flex select-none items-center rounded border-[1px] border-white/25 bg-black py-1 pl-2 pr-3.5 text-base font-medium duration-200 hover:border-white/75  hover:bg-white/10">
-              <FiPlus className="mr-2" />
+            <button className="relative flex select-none items-center rounded border-[1px] border-white/25 bg-black py-1.5 pl-3 pr-4 text-lg font-medium duration-200 hover:border-white/75  hover:bg-white/10">
+              <FiFilePlus className="mr-2" />
               Create
             </button>
           </Link>
