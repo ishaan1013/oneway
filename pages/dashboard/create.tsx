@@ -22,11 +22,6 @@ const Create = () => {
         <DashboardNav />
 
         <div className="flex w-full flex-col items-center">
-          <div>
-            <h1 className="text-center text-3xl font-bold">Create</h1>
-            <p className="text-base opacity-50">Hover images for options.</p>
-          </div>
-
           <FileDrop />
         </div>
       </main>
