@@ -1,8 +1,11 @@
 import Image from "next/image"
+import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { AiOutlineFileAdd } from "react-icons/ai"
+import { FiCheck } from "react-icons/fi"
 import { RiArrowRightLine } from "react-icons/ri"
+import { BsArrowReturnRight, BsArrowRepeat } from "react-icons/bs"
 
 const thumbInner = {
   display: "flex",
@@ -18,7 +21,17 @@ const img = {
 
 const FileDrop = () => {
   const [files, setFiles] = useState<any>([])
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [success, setSuccess] = useState<boolean>(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (loading) {
+        setSuccess(true)
+      }
+    }, 3000)
+  }, [loading])
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/jpeg": [".jpeg"],
@@ -44,6 +57,21 @@ const FileDrop = () => {
           alt="Uploaded file preview"
           width={384}
           height={216}
+        />
+      </div>
+    </div>
+  ))
+
+  const thumbs2 = files.map((file: any) => (
+    <div
+      className="mt-4 inline-flex w-96 overflow-hidden rounded"
+      key={file.name}>
+      <div className="flex min-w-0 overflow-hidden">
+        <Image
+          src={file.preview}
+          alt="Uploaded file preview"
+          width={384}
+          height={216}
           // Revoke data uri after image is loaded
           onLoad={() => {
             URL.revokeObjectURL(file.preview)
@@ -61,17 +89,7 @@ const FileDrop = () => {
   return (
     <>
       {/* <p className="opacity/50 text-xs">{JSON.stringify(files)}</p> */}
-      {loading ? (
-        <>
-          <span className="loader mt-16"></span>
-          <div className="mt-4 animate-pulse text-center text-lg font-medium">
-            Posting
-          </div>
-          {/* <div className="mt-4 text-center text-lg font-medium">
-            Getting Account Info
-          </div> */}
-        </>
-      ) : files.length === 0 ? (
+      {files.length === 0 ? (
         <>
           <h1 className="text-center text-3xl font-bold">Create</h1>
           <div className="custom-gradient group relative z-10 mt-10 w-96 rounded p-[1px]">
@@ -108,25 +126,69 @@ const FileDrop = () => {
             </a>
           </div>
         </>
+      ) : success ? (
+        <>
+          <div className="relative z-10 mb-8 flex h-12 w-12 items-center justify-center">
+            <div className="custom-gradient absolute -z-10 h-12 w-12 rounded-full blur-xl" />
+            <FiCheck className="h-full w-full rounded-full border-[1px] border-white/25 bg-black px-1.5 pt-2 pb-1 text-white" />
+          </div>
+          <div className="text-lg font-medium">Successfully Uploaded</div>
+
+          {thumbs2}
+
+          <div className="mt-3 flex w-96 flex-col items-center sm:flex-row sm:justify-center">
+            <button
+              onClick={() => {
+                setFiles([])
+                setLoading(false)
+                setSuccess(false)
+              }}
+              className="relative mr-0 mb-3 flex w-full select-none items-center justify-center rounded border-[1px] border-white/25 bg-black py-1.5 font-medium duration-200 hover:border-white/75 hover:bg-white/10 sm:mr-3 sm:mb-0 sm:w-1/2  sm:pr-0.5">
+              <BsArrowRepeat className="mr-1.5" />
+              Post Again
+            </button>
+            <Link
+              href="/dashboard"
+              className="relative flex w-full select-none items-center justify-center rounded border-[1px] border-white/25 bg-black py-1.5 font-medium duration-200 hover:border-white/75 hover:bg-white/10 sm:w-1/2  sm:pr-0.5">
+              <BsArrowReturnRight className="mr-1.5" />
+              Overview
+            </Link>
+          </div>
+        </>
       ) : (
         <>
           <h1 className="text-center text-3xl font-bold">Create</h1>
-          <div className="mt-4 flex flex-wrap">
+          <div className="mt-2 flex flex-wrap">
             <div className="flex flex-col items-center">
               {thumbs}
-              <div className="custom-gradient group relative z-10 mt-3 w-full rounded p-[1px]">
-                <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
-                <button className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
-                  Publish Image
-                </button>
-              </div>
-              <button
-                onClick={() => {
-                  setFiles([])
-                }}
-                className="p-2 text-center text-base opacity-50 duration-200 hover:opacity-30">
-                Cancel Post
-              </button>
+              {!loading ? (
+                <>
+                  <div className="custom-gradient group relative z-10 mt-3 w-full rounded p-[1px]">
+                    <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
+                    <button
+                      onClick={() => setLoading(true)}
+                      className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
+                      Publish Image
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setFiles([])
+                    }}
+                    className="p-2 text-center text-base opacity-50 duration-200 hover:opacity-30">
+                    Cancel Post
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="custom-gradient relative z-10 mt-3 w-full animate-pulse rounded p-[1px]">
+                    <div className="custom-gradient absolute -z-10 h-full w-full opacity-50 blur-xl duration-200"></div>
+                    <div className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
+                      Posting...
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </>
