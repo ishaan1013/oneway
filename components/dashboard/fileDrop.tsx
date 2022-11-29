@@ -49,14 +49,17 @@ const FileDrop = () => {
 
   const thumbs = files.map((file: any) => (
     <div
-      className="mt-6 inline-flex w-96 overflow-hidden rounded"
+      className="inline-flex h-[400px] w-[400px] overflow-hidden rounded border-[1px] border-white/25 bg-black"
       key={file.name}>
       <div className="flex min-w-0 overflow-hidden">
+        <div>{file.preview}</div>
+
         <Image
           src={file.preview}
           alt="Uploaded file preview"
-          width={384}
-          height={216}
+          width={400}
+          height={400}
+          className="object-contain "
         />
       </div>
     </div>
@@ -64,14 +67,15 @@ const FileDrop = () => {
 
   const thumbs2 = files.map((file: any) => (
     <div
-      className="mt-4 inline-flex w-96 overflow-hidden rounded"
+      className="mt-4 inline-flex h-[350px] w-[350px] overflow-hidden rounded border-[1px] border-white/25 bg-black"
       key={file.name}>
       <div className="flex min-w-0 overflow-hidden">
         <Image
           src={file.preview}
-          alt="Uploaded file preview"
-          width={384}
-          height={216}
+          alt="Posted image preview"
+          width={350}
+          height={350}
+          className="object-contain"
           // Revoke data uri after image is loaded
           onLoad={() => {
             URL.revokeObjectURL(file.preview)
@@ -107,9 +111,9 @@ const FileDrop = () => {
             </section>
             <div className="custom-gradient absolute top-1/2 left-1/2 -z-10 h-full w-full -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl duration-200 peer-hover:opacity-40" />
           </div>
-          <div className="mt-5 h-[1px] w-96 bg-white/25" />
-          <div className="mt-3 text-lg font-medium">Conversion Tools</div>
-          <div className="mt-1 flex w-96 flex-col items-center sm:flex-row sm:justify-center">
+          <div className="mt-8 h-[1px] w-96 bg-white/25" />
+          <div className="mt-5 text-lg font-medium">Conversion Tools</div>
+          <div className="mt-2 flex w-96 flex-col items-center sm:flex-row sm:justify-center">
             <a
               href="https://png2jpg.com"
               rel="noreferrer"
@@ -128,7 +132,7 @@ const FileDrop = () => {
         </>
       ) : success ? (
         <>
-          <div className="relative z-10 mb-8 flex h-12 w-12 items-center justify-center">
+          <div className="relative z-10 mb-3 -mt-3 flex h-12 w-12 items-center justify-center">
             <div className="custom-gradient absolute -z-10 h-12 w-12 rounded-full blur-xl" />
             <FiCheck className="h-full w-full rounded-full border-[1px] border-white/25 bg-black px-1.5 pt-2 pb-1 text-white" />
           </div>
@@ -136,7 +140,7 @@ const FileDrop = () => {
 
           {thumbs2}
 
-          <div className="mt-3 flex w-96 flex-col items-center sm:flex-row sm:justify-center">
+          <div className="mt-3 flex w-[350px] flex-col items-center sm:flex-row sm:justify-center">
             <button
               onClick={() => {
                 setFiles([])
@@ -157,39 +161,38 @@ const FileDrop = () => {
         </>
       ) : (
         <>
-          <h1 className="text-center text-3xl font-bold">Create</h1>
-          <div className="mt-2 flex flex-wrap">
-            <div className="flex flex-col items-center">
-              {thumbs}
-              {!loading ? (
-                <>
-                  <div className="custom-gradient group relative z-10 mt-3 w-full rounded p-[1px]">
-                    <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
-                    <button
-                      onClick={() => setLoading(true)}
-                      className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
-                      Publish Image
-                    </button>
-                  </div>
+          <div className="mt-4 flex h-[400px]">
+            {thumbs}
+            {!loading ? (
+              <div className="ml-12 flex h-full flex-col items-center justify-center">
+                <div className="custom-gradient group relative z-10 mt-5 w-full rounded p-[1px]">
+                  <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
                   <button
-                    onClick={() => {
-                      setFiles([])
-                    }}
-                    className="p-2 text-center text-base opacity-50 duration-200 hover:opacity-30">
-                    Cancel Post
+                    onClick={() => setLoading(true)}
+                    className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
+                    Publish Image
                   </button>
-                </>
-              ) : (
-                <>
+                </div>
+                <button
+                  onClick={() => {
+                    setFiles([])
+                  }}
+                  className="p-2 text-center text-base opacity-50 duration-200 hover:opacity-30">
+                  Cancel Post
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="ml-12 flex h-full flex-col items-center justify-center">
                   <div className="custom-gradient relative z-10 mt-3 w-full animate-pulse rounded p-[1px]">
                     <div className="custom-gradient absolute -z-10 h-full w-full opacity-50 blur-xl duration-200"></div>
                     <div className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
                       Posting...
                     </div>
                   </div>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

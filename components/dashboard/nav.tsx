@@ -9,7 +9,7 @@ const DashboardNav = () => {
   const router = useRouter()
 
   return (
-    <nav className="xs:px-8 fixed top-0 z-50 w-screen overflow-hidden border-b-[1px] border-white/20 bg-black/50 px-4 pt-4 backdrop-blur-md md:px-16">
+    <nav className="xs:px-8 fixed top-0 z-50 w-screen overflow-hidden border-b-[1px] border-white/20 bg-black/60 px-4 pt-4 backdrop-blur-lg md:px-16">
       <div className="custom-gradient xs:w-[250px] xs:blur-2xl absolute -left-24 -z-10 h-2/3 w-[100px] rotate-180 opacity-80 blur-xl md:w-[330px] md:blur-3xl" />
 
       <div className="flex w-full items-center justify-between">
