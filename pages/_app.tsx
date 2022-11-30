@@ -1,12 +1,9 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import { SessionProvider } from "next-auth/react"
-import { Space_Grotesk } from "@next/font/google"
+import Space from "@next/font/local"
 
-const spaceGrotesk = Space_Grotesk({
-  weight: "variable",
-  subsets: ["latin"],
-})
+const font = Space({ src: "../assets/Space.ttf" })
 
 export default function App({
   Component,
@@ -14,7 +11,7 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <div className={spaceGrotesk.className}>
+      <div className={font.className}>
         <Component {...pageProps} />
       </div>
     </SessionProvider>

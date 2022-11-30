@@ -27,13 +27,13 @@ a {
 .custom-gradient {
   background: linear-gradient(
     90deg,
-    #002296,
+    #1137ba,
     #82008f,
     #c0007a,
     #ea0c5f,
     #ff5341,
     #ff8820,
-    #f6ba00
+    #f6ba00cc
   );
 }
 
