@@ -1,4 +1,4 @@
-import Image from "next/image"
+import { default as NextImage } from "next/image"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
@@ -7,22 +7,45 @@ import { FiCheck } from "react-icons/fi"
 import { RiArrowRightLine } from "react-icons/ri"
 import { BsArrowReturnRight, BsArrowRepeat } from "react-icons/bs"
 
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-}
+const loadImage = ({
+  setDimensions,
+  imgURL,
+}: {
+  setDimensions: (dimensions: any) => void
+  imgURL: string
+}) => {
+  const img = new Image()
+  img.src = imgURL
+  img.onload = () => {
+    const aspectRatio =
+      img.width >= img.height
+        ? Math.round((img.width / img.height + Number.EPSILON) * 100) / 100 +
+          ":1"
+        : "1:" +
+          Math.round((img.height / img.width + Number.EPSILON) * 100) / 100
 
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
+    setDimensions({
+      width: img.width,
+      height: img.height,
+      aspectRatio,
+    })
+    console.log(img.width, img.height)
+  }
+  img.onerror = (err: any) => {
+    console.log("img error")
+    console.log(err)
+  }
 }
 
 const FileDrop = () => {
   const [files, setFiles] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
+  const [dimensions, setDimensions] = useState<{
+    width: number
+    height: number
+    aspectRatio: string
+  }>({ width: 0, height: 0, aspectRatio: "" })
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,6 +54,15 @@ const FileDrop = () => {
       }
     }, 3000)
   }, [loading])
+
+  useEffect(() => {
+    if (files.length > 0) {
+      loadImage({
+        setDimensions,
+        imgURL: files[0].preview,
+      })
+    }
+  }, [files])
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -51,10 +83,10 @@ const FileDrop = () => {
     <div
       className="inline-flex h-[400px] w-[400px] overflow-hidden rounded border-[1px] border-white/25 bg-black"
       key={file.name}>
-      <div className="flex min-w-0 overflow-hidden">
-        <div>{file.preview}</div>
+      <div className="relative flex min-w-0 overflow-hidden">
+        <div className="absolute">{file.preview}</div>
 
-        <Image
+        <NextImage
           src={file.preview}
           alt="Uploaded file preview"
           width={400}
@@ -70,7 +102,7 @@ const FileDrop = () => {
       className="mt-4 inline-flex h-[350px] w-[350px] overflow-hidden rounded border-[1px] border-white/25 bg-black"
       key={file.name}>
       <div className="flex min-w-0 overflow-hidden">
-        <Image
+        <NextImage
           src={file.preview}
           alt="Posted image preview"
           width={350}
@@ -165,6 +197,21 @@ const FileDrop = () => {
             {thumbs}
             {!loading ? (
               <div className="ml-12 flex h-full flex-col items-center justify-center">
+                <div className="text-white/50">
+                  Dimensions:{" "}
+                  <span className="font-semibold text-white">
+                    {dimensions.width} x {dimensions.height}
+                  </span>
+                </div>
+                <div className="mt-2 text-white/50">
+                  Aspect Ratio:{" "}
+                  <span className="font-semibold text-white">
+                    {dimensions.aspectRatio}
+                  </span>
+                </div>
+
+                <div className="mb-3 mt-6 h-[1px] w-72 bg-white/25" />
+
                 <div className="custom-gradient group relative z-10 mt-5 w-full rounded p-[1px]">
                   <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
                   <button
