@@ -86,12 +86,12 @@ const Home = () => {
         {/* <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
           OneWay
         </h2> */}
-        <h1 className="mb-1.5 text-center text-8xl font-bold opacity-70">
+        {/* <h1 className="mb-1.5 text-center text-8xl font-bold opacity-70">
           Instagram
         </h1>
         <h2 className="mb-14 -translate-x-1 text-center text-8xl font-bold italic">
           One Way
-        </h2>
+        </h2> */}
         <LoginButton />
         <button className="mt-3 text-lg font-medium opacity-90 duration-200 hover:opacity-50">
           About This Project

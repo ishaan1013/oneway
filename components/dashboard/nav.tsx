@@ -19,7 +19,9 @@ const DashboardNav = () => {
               OneWay
             </Link>
             <div className="mx-4 h-5 w-[1.5px] rotate-12 bg-white/50" />
-            <p className="font-medium">@ig_account</p>
+            <button className="rounded px-2 pt-1 pb-0.5 text-[0.9rem] font-medium text-white/80 duration-200 hover:bg-white/[0.15]">
+              @ig_account
+            </button>
           </div>
           <ul className="mt-3 list-none space-x-3">
             <li
@@ -34,7 +36,7 @@ const DashboardNav = () => {
                 className={`rounded px-2 py-1 font-light duration-200 ${
                   router.pathname == "/dashboard"
                     ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
+                    : "opacity-40 hover:bg-white/20 hover:opacity-70"
                 }`}>
                 Overview
               </Link>
@@ -51,7 +53,7 @@ const DashboardNav = () => {
                 className={`rounded px-2 py-1 font-light duration-200 ${
                   router.pathname == "/dashboard/create"
                     ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
+                    : "opacity-40 hover:bg-white/20 hover:opacity-70"
                 }`}>
                 Create
               </Link>
@@ -68,7 +70,7 @@ const DashboardNav = () => {
                 className={`rounded px-2 py-1 font-light duration-200 ${
                   router.pathname == "/dashboard/settings"
                     ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-50 hover:bg-white/20 hover:opacity-80"
+                    : "opacity-40 hover:bg-white/20 hover:opacity-70"
                 }`}>
                 Settings
               </Link>
