@@ -17,6 +17,8 @@ const Create = () => {
 
       <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-36 pb-16 md:px-16">
         <DashboardNav />
+
+        <div>Default </div>
       </main>
     </div>
   )
