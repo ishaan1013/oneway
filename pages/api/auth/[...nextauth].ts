@@ -4,6 +4,22 @@ import FacebookProvider from "next-auth/providers/facebook";
 
 
 export const authOptions = {
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.id = token.id;
+      session.accessToken = token.accessToken;
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        token.id = user.id;
+      }
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+  },
   providers: [
     FacebookProvider({
       clientId: typeof process.env.FACEBOOK_CLIENT_ID === "string" ? process.env.FACEBOOK_CLIENT_ID : "",

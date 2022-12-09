@@ -1,12 +1,19 @@
 import Head from "next/head"
 import Link from "next/link"
-import { getSession } from "next-auth/react"
+import { useEffect } from "react"
+import { getSession, useSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
 import { FiFilePlus } from "react-icons/fi"
 
 import DashboardNav from "../../components/dashboard/nav"
 
+import { useGlobalContext } from "../../context"
+
 const Dashboard = () => {
+  const { igUserId } = useGlobalContext()
+  const session = getSession()
+  // const { data: session } = useSession()
+
   return (
     <div>
       <Head>
@@ -25,6 +32,9 @@ const Dashboard = () => {
           <div>
             <h1 className="text-left text-xl font-bold">Account Overview</h1>
             <p className="text-sm opacity-50">Hover images for options.</p>
+            <p className="text-sm opacity-50">
+              Context: {JSON.stringify(session)}
+            </p>
           </div>
 
           <Link href="/dashboard/create">
