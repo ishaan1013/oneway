@@ -42,6 +42,8 @@ const FileDrop = () => {
   const [files, setFiles] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
+  const [horizontalCheck, setHorizontalCheck] = useState<boolean>(false)
+  const [verticalCheck, setVerticalCheck] = useState<boolean>(false)
   const [dimensions, setDimensions] = useState<{
     width: number
     height: number
@@ -213,12 +215,26 @@ const FileDrop = () => {
                   <FiX className="ml-1.5 text-lg text-red-500" />
                 </div>
 
-                <div className="mt-1 text-sm text-red-500"> </div>
-                <div className="mt-3 flex space-x-2">
-                  <button className="flex select-none items-center justify-center rounded border-[1px] border-white/25 bg-black p-1.5 text-2xl font-medium duration-200 hover:border-white/75 hover:bg-white/10">
+                <div className="mt-1 text-center text-xs font-semibold text-red-500">
+                  Invalid Aspect Ratio
+                </div>
+                <div className="mt-4 flex space-x-2">
+                  <button
+                    onClick={() => setHorizontalCheck(true)}
+                    className={`flex select-none items-center justify-center rounded border-[1px] ${
+                      horizontalCheck
+                        ? "border-white/50 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
+                        : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10"
+                    } p-1.5 text-2xl font-medium duration-200`}>
                     <TbLineDashed />
                   </button>
-                  <button className="flex rotate-90 select-none items-center justify-center rounded border-[1px] border-white/25 bg-black p-1.5 text-2xl font-medium duration-200 hover:border-white/75 hover:bg-white/10">
+                  <button
+                    onClick={() => setVerticalCheck(true)}
+                    className={`flex rotate-90 select-none items-center justify-center rounded border-[1px] ${
+                      verticalCheck
+                        ? "border-white/50 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
+                        : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10"
+                    } p-1.5 text-2xl font-medium duration-200`}>
                     <TbLineDashed />
                   </button>
                 </div>
