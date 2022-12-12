@@ -9,12 +9,15 @@ import { JWT } from "next-auth/jwt";
 
 declare module "next-auth/jwt" {
   interface JWT {
-    customTokenProperty: string;
+    id: string;
+    accessToken: string;
   }
 }
 
 declare module "next-auth" {
   interface Session {
-    customSessionProperty: string;
+    user: {
+      id: string;
+    }
   }
 }

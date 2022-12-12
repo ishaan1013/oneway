@@ -3,9 +3,10 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { AiOutlineFileAdd } from "react-icons/ai"
-import { FiCheck } from "react-icons/fi"
+import { FiCheck, FiX } from "react-icons/fi"
 import { RiArrowRightLine } from "react-icons/ri"
 import { BsArrowReturnRight, BsArrowRepeat } from "react-icons/bs"
+import { TbLineDashed } from "react-icons/tb"
 
 const loadImage = ({
   setDimensions,
@@ -203,11 +204,23 @@ const FileDrop = () => {
                     {dimensions.width} x {dimensions.height}
                   </span>
                 </div>
-                <div className="mt-2 text-white/50">
+                <div className="mt-2 flex items-center text-white/50">
                   Aspect Ratio:{" "}
-                  <span className="font-semibold text-white">
+                  <span className="ml-1 font-semibold text-white">
                     {dimensions.aspectRatio}
                   </span>
+                  {/* <FiCheck className="ml-1.5 text-lg text-green-400" /> */}
+                  <FiX className="ml-1.5 text-lg text-red-500" />
+                </div>
+
+                <div className="mt-1 text-sm text-red-500"> </div>
+                <div className="mt-3 flex space-x-2">
+                  <button className="flex select-none items-center justify-center rounded border-[1px] border-white/25 bg-black p-1.5 text-2xl font-medium duration-200 hover:border-white/75 hover:bg-white/10">
+                    <TbLineDashed />
+                  </button>
+                  <button className="flex rotate-90 select-none items-center justify-center rounded border-[1px] border-white/25 bg-black p-1.5 text-2xl font-medium duration-200 hover:border-white/75 hover:bg-white/10">
+                    <TbLineDashed />
+                  </button>
                 </div>
 
                 <div className="mb-3 mt-6 h-[1px] w-72 bg-white/25" />
