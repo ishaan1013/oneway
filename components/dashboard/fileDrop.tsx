@@ -25,10 +25,19 @@ const loadImage = ({
         : "1:" +
           Math.round((img.height / img.width + Number.EPSILON) * 100) / 100
 
+    const n1 = aspectRatio.substring(0, aspectRatio.indexOf(":"))
+    const n2 = aspectRatio.substring(
+      aspectRatio.indexOf(":") + 1,
+      aspectRatio.length
+    )
+    const valid =
+      parseFloat(n1) === 1 ? parseFloat(n2) < 1.25 : parseFloat(n1) < 1.91
+
     setDimensions({
       width: img.width,
       height: img.height,
       aspectRatio,
+      valid,
     })
     console.log(img.width, img.height)
   }
@@ -48,7 +57,12 @@ const FileDrop = () => {
     width: number
     height: number
     aspectRatio: string
-  }>({ width: 0, height: 0, aspectRatio: "" })
+    valid: boolean
+  }>({ width: 0, height: 0, aspectRatio: "", valid: true })
+
+  useEffect(() => {
+    return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview))
+  }, [])
 
   useEffect(() => {
     setTimeout(() => {
@@ -87,7 +101,18 @@ const FileDrop = () => {
       className="inline-flex h-[400px] w-[400px] overflow-hidden rounded border-[1px] border-white/25 bg-black"
       key={file.name}>
       <div className="relative flex min-w-0 overflow-hidden">
-        <div className="absolute">{file.preview}</div>
+        {/* <div className="absolute">{file.preview}</div> */}
+        {horizontalCheck ? (
+          <>
+            <div className="absolute top-0 z-10 h-[23.82%] w-full border-b-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
+            <div className="absolute bottom-0 z-10 h-[23.82%] w-full border-t-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
+          </>
+        ) : verticalCheck ? (
+          <>
+            <div className="absolute left-0 z-10 h-full w-[10%] border-r-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
+            <div className="absolute right-0 z-10 h-full w-[10%] border-l-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
+          </>
+        ) : null}
 
         <NextImage
           src={file.preview}
@@ -119,11 +144,6 @@ const FileDrop = () => {
       </div>
     </div>
   ))
-
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview))
-  }, [])
 
   return (
     <>
@@ -169,7 +189,7 @@ const FileDrop = () => {
         <>
           <div className="relative z-10 mb-3 -mt-3 flex h-12 w-12 items-center justify-center">
             <div className="custom-gradient absolute -z-10 h-12 w-12 rounded-full blur-xl" />
-            <FiCheck className="h-full w-full rounded-full border-[1px] border-white/25 bg-black px-1.5 pt-2 pb-1 text-white" />
+            <FiCheck className="h-full w-full rounded-full border-[1px] border-white/25 bg-black px-2 pt-2.5 pb-1.5 text-white" />
           </div>
           <div className="text-lg font-medium">Successfully Uploaded</div>
 
@@ -184,7 +204,7 @@ const FileDrop = () => {
               }}
               className="relative mr-0 mb-3 flex w-full select-none items-center justify-center rounded border-[1px] border-white/25 bg-black py-1.5 font-medium duration-200 hover:border-white/75 hover:bg-white/10 sm:mr-3 sm:mb-0 sm:w-1/2  sm:pr-0.5">
               <BsArrowRepeat className="mr-1.5" />
-              Post Again
+              Post Another
             </button>
             <Link
               href="/dashboard"
@@ -211,29 +231,44 @@ const FileDrop = () => {
                   <span className="ml-1 font-semibold text-white">
                     {dimensions.aspectRatio}
                   </span>
-                  {/* <FiCheck className="ml-1.5 text-lg text-green-400" /> */}
-                  <FiX className="ml-1.5 text-lg text-red-500" />
+                  {dimensions.valid ? (
+                    <FiCheck className="ml-1.5 text-lg text-green-400" />
+                  ) : (
+                    <FiX className="ml-1.5 text-lg text-red-500" />
+                  )}
                 </div>
 
-                <div className="mt-1 text-center text-xs font-semibold text-red-500">
-                  Invalid Aspect Ratio
-                </div>
+                {dimensions.valid ? null : (
+                  <>
+                    <div className="mt-1.5 text-center text-xs font-bold text-red-500">
+                      Invalid Aspect Ratio
+                    </div>
+                    <div className="mt-0.5 text-center text-xs font-medium text-red-500">
+                      Maximum{" "}
+                      <span className="font-bold underline">1:1.25</span> or{" "}
+                      <span className="font-bold underline">1.91:1</span>
+                    </div>
+                  </>
+                )}
+
                 <div className="mt-4 flex space-x-2">
                   <button
-                    onClick={() => setHorizontalCheck(true)}
+                    onClick={() => setHorizontalCheck((prev) => !prev)}
+                    disabled={verticalCheck}
                     className={`flex select-none items-center justify-center rounded border-[1px] ${
                       horizontalCheck
                         ? "border-white/50 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
-                        : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10"
+                        : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:border-white/25 disabled:hover:bg-black"
                     } p-1.5 text-2xl font-medium duration-200`}>
                     <TbLineDashed />
                   </button>
                   <button
-                    onClick={() => setVerticalCheck(true)}
+                    onClick={() => setVerticalCheck((prev) => !prev)}
+                    disabled={horizontalCheck}
                     className={`flex rotate-90 select-none items-center justify-center rounded border-[1px] ${
                       verticalCheck
                         ? "border-white/50 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
-                        : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10"
+                        : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:border-white/25 disabled:hover:bg-black"
                     } p-1.5 text-2xl font-medium duration-200`}>
                     <TbLineDashed />
                   </button>
@@ -241,19 +276,34 @@ const FileDrop = () => {
 
                 <div className="mb-3 mt-6 h-[1px] w-72 bg-white/25" />
 
-                <div className="custom-gradient group relative z-10 mt-5 w-full rounded p-[1px]">
-                  <div className="custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 group-hover:opacity-70"></div>
+                <div
+                  className={`custom-gradient group relative z-10 mt-5 w-full rounded p-[1px]`}>
+                  <div
+                    className={`custom-gradient absolute -z-10 h-full w-full opacity-30 blur-xl duration-200 ${
+                      dimensions.valid ? "group-hover:opacity-70" : ""
+                    }`}></div>
                   <button
-                    onClick={() => setLoading(true)}
-                    className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium">
+                    onClick={() => {
+                      setLoading(true)
+                      setVerticalCheck(false)
+                      setHorizontalCheck(false)
+                    }}
+                    disabled={!dimensions.valid}
+                    className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium disabled:cursor-not-allowed">
                     Publish Image
                   </button>
                 </div>
                 <button
                   onClick={() => {
                     setFiles([])
+                    setVerticalCheck(false)
+                    setHorizontalCheck(false)
                   }}
-                  className="p-2 text-center text-base opacity-50 duration-200 hover:opacity-30">
+                  className={`p-2 text-center text-base ${
+                    dimensions.valid
+                      ? "opacity-50 hover:opacity-30"
+                      : "opacity-80 hover:opacity-50"
+                  } duration-200`}>
                   Cancel Post
                 </button>
               </div>
