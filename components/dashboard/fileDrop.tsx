@@ -7,6 +7,7 @@ import { FiCheck, FiX } from "react-icons/fi"
 import { RiArrowRightLine } from "react-icons/ri"
 import { BsArrowReturnRight, BsArrowRepeat } from "react-icons/bs"
 import { TbLineDashed } from "react-icons/tb"
+import SizeChecks from "./sizeChecks"
 
 const loadImage = ({
   setDimensions,
@@ -252,7 +253,7 @@ const FileDrop = () => {
                 )}
 
                 <div className="mt-4 flex space-x-2">
-                  <button
+                  {/* <button
                     onClick={() => setHorizontalCheck((prev) => !prev)}
                     disabled={verticalCheck}
                     className={`flex select-none items-center justify-center rounded border-[1px] ${
@@ -271,7 +272,21 @@ const FileDrop = () => {
                         : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:border-white/25 disabled:hover:bg-black"
                     } p-1.5 text-2xl font-medium duration-200`}>
                     <TbLineDashed />
-                  </button>
+                  </button> */}
+                  <SizeChecks
+                    horizontal
+                    horizontalCheck={horizontalCheck}
+                    verticalCheck={verticalCheck}
+                    setHorizontalCheck={setHorizontalCheck}
+                    setVerticalCheck={setVerticalCheck}
+                  />
+                  <SizeChecks
+                    horizontal={false}
+                    horizontalCheck={horizontalCheck}
+                    verticalCheck={verticalCheck}
+                    setHorizontalCheck={setHorizontalCheck}
+                    setVerticalCheck={setVerticalCheck}
+                  />
                 </div>
 
                 <div className="mb-3 mt-6 h-[1px] w-72 bg-white/25" />
