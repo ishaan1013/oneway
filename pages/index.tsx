@@ -54,10 +54,8 @@ const Home = () => {
             <div className="grid-gradient relative mt-[60vh] h-[40vh] w-full">
               <Image
                 src={GridLg}
-                className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+                className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
                 alt=""
-                objectFit="cover"
-                layout="fill"
               />
             </div>
           ) : mediaSm && !mediaLg ? (

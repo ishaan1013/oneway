@@ -16,7 +16,7 @@ const SizeChecks = ({
 }) => {
   return (
     <>
-      <Tooltip.Provider>
+      <Tooltip.Provider delayDuration={500} skipDelayDuration={500}>
         <Tooltip.Root>
           <Tooltip.Trigger asChild>
             {horizontal ? (

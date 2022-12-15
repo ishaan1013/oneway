@@ -11,10 +11,6 @@ function useMediaQuery(query: string): boolean {
 
   const [matches, setMatches] = useState<boolean>(getMatches(query))
 
-  // useEffect(() => {
-  //   setMatches(window.matchMedia(query).matches)
-  // }, [])
-
   function handleChange() {
     setMatches(getMatches(query))
   }
@@ -28,6 +24,7 @@ function useMediaQuery(query: string): boolean {
     // Listen matchMedia
     if (matchMedia.addListener) {
       matchMedia.addListener(handleChange)
+    // fallback for compatibility
     } else {
       matchMedia.addEventListener('change', handleChange)
     }
@@ -35,6 +32,7 @@ function useMediaQuery(query: string): boolean {
     return () => {
       if (matchMedia.removeListener) {
         matchMedia.removeListener(handleChange)
+      // fallback for compatibility
       } else {
         matchMedia.removeEventListener('change', handleChange)
       }
