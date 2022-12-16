@@ -32,15 +32,15 @@ const Settings = () => {
         <DashboardNav />
 
         <div className="flex w-full flex-col items-start justify-start md:flex-row md:justify-between">
-          <div className="flex-grow md:w-2/3">
+          <div className="w-full md:flex-grow">
             <div className="w-full">
               <h2 className="text-left text-xl font-bold">
                 Customize Post Options
               </h2>
               <div className="mt-3 flex w-full items-center justify-between py-3 text-white/70">
                 Enable Captions
-                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
-                  <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
+                <Switch.Root className="relative h-[26px] w-[48px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
+                  <Switch.Thumb className="block h-5 w-5 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
                 </Switch.Root>
               </div>
               <div className="flex w-full items-center justify-between border-t-[1px] border-white/10 py-3 text-white/70">
@@ -97,23 +97,6 @@ const Settings = () => {
                     <div className="px-2 text-sm">1:1.2</div>
                   </ToggleGroup.Item>
                 </ToggleGroup.Root>
-              </div>
-            </div>
-            <div className="mt-10 w-full">
-              <h2 className="text-left text-xl font-bold">
-                Customize Post Options
-              </h2>
-              <div className="mt-3 flex w-full items-center justify-between py-3 text-white/70">
-                Enable Captions
-                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
-                  <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
-                </Switch.Root>
-              </div>
-              <div className="flex w-full items-center justify-between border-t-[1px] border-white/10 py-3 text-white/70">
-                Restrict Aspect Ratio
-                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
-                  <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
-                </Switch.Root>
               </div>
             </div>
           </div>
