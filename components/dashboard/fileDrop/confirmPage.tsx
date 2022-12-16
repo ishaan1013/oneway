@@ -71,7 +71,7 @@ const ConfirmPost = ({
                 {dimensions.aspectRatio}
               </span>
               {dimensions.valid ? (
-                <FiCheck className="ml-1.5 text-lg text-green-500" />
+                <FiCheck className="ml-1.5 text-lg text-violet-500" />
               ) : (
                 <FiX className="ml-1.5 text-lg text-red-500" />
               )}

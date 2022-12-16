@@ -1,5 +1,5 @@
 import Head from "next/head"
-
+import { useState } from "react"
 import { getSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
 
@@ -10,7 +10,15 @@ import { BiLink } from "react-icons/bi"
 import * as Switch from "@radix-ui/react-switch"
 import * as ToggleGroup from "@radix-ui/react-toggle-group"
 
-const Create = () => {
+const Settings = () => {
+  const [options, setOptions] = useState<{
+    enableCaptions: boolean
+    restrictAspectRatio: string
+  }>({
+    enableCaptions: false,
+    restrictAspectRatio: "1.91:1",
+  })
+
   return (
     <div>
       <Head>
@@ -31,47 +39,59 @@ const Create = () => {
               </h2>
               <div className="mt-3 flex w-full items-center justify-between py-3 text-white/70">
                 Enable Captions
-                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-green-500">
+                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
                   <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
                 </Switch.Root>
               </div>
               <div className="flex w-full items-center justify-between border-t-[1px] border-white/10 py-3 text-white/70">
                 <div className="flex items-center">
                   Restrict Aspect Ratio
-                  <div className="ml-3 rounded bg-white/10 px-2 py-0.5 text-sm">
-                    On
+                  <div
+                    className={`ml-3 rounded bg-white/10 ${
+                      options.restrictAspectRatio
+                        ? "font-semibold text-violet-500"
+                        : "text-red-500"
+                    } px-2 py-0.5 text-sm`}>
+                    {options.restrictAspectRatio ? "On" : "Off"}
                   </div>
                 </div>
                 <ToggleGroup.Root
                   className="inline-flex overflow-hidden rounded border-[1px] border-white/10"
                   type="single"
+                  value={options.restrictAspectRatio}
+                  onValueChange={(value) => {
+                    setOptions((prev) => ({
+                      ...prev,
+                      restrictAspectRatio: value,
+                    }))
+                  }}
                   aria-label="Restrict aspect ratio">
                   <ToggleGroup.Item
-                    className="flex h-8 items-center justify-center rounded-l-[3.5px] border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    className="flex h-8 items-center justify-center rounded-l-[3.5px] border-r-[1px] border-white/10 bg-white/5 text-white/60 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
                     value="1.91:1"
                     aria-label="1.91 to 1">
                     <div className="px-2 text-sm">1.91:1</div>
                   </ToggleGroup.Item>
                   <ToggleGroup.Item
-                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/60 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
                     value="1.33:1"
                     aria-label="1.33 to 1">
                     <div className="px-2 text-sm">1.33:1</div>
                   </ToggleGroup.Item>
                   <ToggleGroup.Item
-                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/60 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
                     value="1:1"
                     aria-label="1 to 1">
                     <div className="px-2 text-sm">1:1</div>
                   </ToggleGroup.Item>
                   <ToggleGroup.Item
-                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/60 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
                     value="1:1.1"
                     aria-label="1 to 1.1">
                     <div className="px-2 text-sm">1:1.1</div>
                   </ToggleGroup.Item>
                   <ToggleGroup.Item
-                    className="flex h-8 items-center justify-center rounded-r-[3.5px] bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    className="flex h-8 items-center justify-center rounded-r-[3.5px] bg-white/5 text-white/60 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
                     value="1:1.2"
                     aria-label="1 to 1.2">
                     <div className="px-2 text-sm">1:1.2</div>
@@ -85,13 +105,13 @@ const Create = () => {
               </h2>
               <div className="mt-3 flex w-full items-center justify-between py-3 text-white/70">
                 Enable Captions
-                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-green-500">
+                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
                   <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
                 </Switch.Root>
               </div>
               <div className="flex w-full items-center justify-between border-t-[1px] border-white/10 py-3 text-white/70">
                 Restrict Aspect Ratio
-                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-green-500">
+                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-violet-500">
                   <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
                 </Switch.Root>
               </div>
@@ -142,4 +162,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default Create
+export default Settings
