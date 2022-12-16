@@ -48,7 +48,9 @@ const SizeChecks = ({
               className="z-50 select-none rounded border-[1px] border-white/25 bg-[#191919] px-1.5 py-1 text-xs font-medium shadow-[0_0px_100px_15px_rgba(0,0,0,0.5)]"
               sideOffset={5}
               side="bottom">
-              {horizontal ? "Horizontal Line Check" : "Vertical Line Check"}
+              {horizontal
+                ? "Horizontal Size Check (1.91:1)"
+                : "Vertical Size Check (4:5)"}
             </Tooltip.Content>
           </Tooltip.Portal>
         </Tooltip.Root>

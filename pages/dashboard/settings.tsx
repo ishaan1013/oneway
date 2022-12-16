@@ -4,6 +4,11 @@ import { getSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
 
 import DashboardNav from "../../components/dashboard/nav"
+import { BsFacebook, BsInstagram } from "react-icons/bs"
+import { TbChevronDownLeft } from "react-icons/tb"
+import { BiLink } from "react-icons/bi"
+import * as Switch from "@radix-ui/react-switch"
+import * as ToggleGroup from "@radix-ui/react-toggle-group"
 
 const Create = () => {
   return (
@@ -18,7 +23,103 @@ const Create = () => {
       <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-36 pb-16 md:px-16">
         <DashboardNav />
 
-        <div>Default </div>
+        <div className="flex w-full flex-col items-start justify-start md:flex-row md:justify-between">
+          <div className="flex-grow md:w-2/3">
+            <div className="w-full">
+              <h2 className="text-left text-xl font-bold">
+                Customize Post Options
+              </h2>
+              <div className="mt-3 flex w-full items-center justify-between py-3 text-white/70">
+                Enable Captions
+                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-green-500">
+                  <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
+                </Switch.Root>
+              </div>
+              <div className="flex w-full items-center justify-between border-t-[1px] border-white/10 py-3 text-white/70">
+                <div className="flex items-center">
+                  Restrict Aspect Ratio
+                  <div className="ml-3 rounded bg-white/10 px-2 py-0.5 text-sm">
+                    On
+                  </div>
+                </div>
+                <ToggleGroup.Root
+                  className="inline-flex overflow-hidden rounded border-[1px] border-white/10"
+                  type="single"
+                  aria-label="Restrict aspect ratio">
+                  <ToggleGroup.Item
+                    className="flex h-8 items-center justify-center rounded-l-[3.5px] border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    value="1.91:1"
+                    aria-label="1.91 to 1">
+                    <div className="px-2 text-sm">1.91:1</div>
+                  </ToggleGroup.Item>
+                  <ToggleGroup.Item
+                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    value="1.33:1"
+                    aria-label="1.33 to 1">
+                    <div className="px-2 text-sm">1.33:1</div>
+                  </ToggleGroup.Item>
+                  <ToggleGroup.Item
+                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    value="1:1"
+                    aria-label="1 to 1">
+                    <div className="px-2 text-sm">1:1</div>
+                  </ToggleGroup.Item>
+                  <ToggleGroup.Item
+                    className="flex h-8 items-center justify-center border-r-[1px] border-white/10 bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    value="1:1.1"
+                    aria-label="1 to 1.1">
+                    <div className="px-2 text-sm">1:1.1</div>
+                  </ToggleGroup.Item>
+                  <ToggleGroup.Item
+                    className="flex h-8 items-center justify-center rounded-r-[3.5px] bg-white/5 text-white/70 duration-200 hover:bg-white/10 data-[state=on]:bg-white/20 data-[state=on]:text-white"
+                    value="1:1.2"
+                    aria-label="1 to 1.2">
+                    <div className="px-2 text-sm">1:1.2</div>
+                  </ToggleGroup.Item>
+                </ToggleGroup.Root>
+              </div>
+            </div>
+            <div className="mt-10 w-full">
+              <h2 className="text-left text-xl font-bold">
+                Customize Post Options
+              </h2>
+              <div className="mt-3 flex w-full items-center justify-between py-3 text-white/70">
+                Enable Captions
+                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-green-500">
+                  <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
+                </Switch.Root>
+              </div>
+              <div className="flex w-full items-center justify-between border-t-[1px] border-white/10 py-3 text-white/70">
+                Restrict Aspect Ratio
+                <Switch.Root className="relative h-[30px] w-[52px] rounded-full bg-white/[0.15] hover:bg-white/20 data-[state=checked]:bg-green-500">
+                  <Switch.Thumb className="block h-6 w-6 translate-x-[3px] rounded-full bg-white shadow-xl duration-200 will-change-transform data-[state=checked]:translate-x-[25px] data-[state=checked]:shadow-black" />
+                </Switch.Root>
+              </div>
+            </div>
+          </div>
+          <div className="relative w-full overflow-hidden rounded border-[1px] border-white/10 bg-white/5 p-4 md:ml-4 md:w-1/3 xl:ml-8">
+            <div className="custom-gradient absolute -top-20 right-0 h-36 w-36 -rotate-45 rounded-full blur-3xl" />
+            <div className="flex items-center opacity-40">
+              <BsFacebook className="mr-2" />
+              <div className="cursor-pointer select-none rounded px-2 py-0.5 duration-200 hover:bg-white/20">
+                FB Profile
+              </div>
+            </div>
+            <div className="flex items-center  opacity-40">
+              <TbChevronDownLeft className="ml-2" />
+              <div className="cursor-pointer select-none rounded px-2 py-0.5 duration-200 hover:bg-white/20">
+                FB Page
+              </div>
+            </div>
+            <BiLink className="mb-3 mt-1.5 translate-x-6 opacity-40" />
+            <div className="flex items-center">
+              <BsInstagram className="mr-2" />
+              <div className="cursor-pointer select-none rounded px-2 py-0.5 duration-200 hover:bg-white/[0.15]">
+                IG Profile
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   )

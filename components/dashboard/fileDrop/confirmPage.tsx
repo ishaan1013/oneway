@@ -37,13 +37,13 @@ const ConfirmPost = ({
           <div className="relative flex min-w-0 overflow-hidden">
             {horizontalCheck ? (
               <>
-                <div className="absolute top-0 z-10 h-[23.82%] w-full border-b-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
-                <div className="absolute bottom-0 z-10 h-[23.82%] w-full border-t-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
+                <div className="absolute top-0 z-10 h-[23.82%] w-full border-b-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-[2px]" />
+                <div className="absolute bottom-0 z-10 h-[23.82%] w-full border-t-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-[2px]" />
               </>
             ) : verticalCheck ? (
               <>
-                <div className="absolute left-0 z-10 h-full w-[10%] border-r-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
-                <div className="absolute right-0 z-10 h-full w-[10%] border-l-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-sm" />
+                <div className="absolute left-0 z-10 h-full w-[10%] border-r-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-[2px]" />
+                <div className="absolute right-0 z-10 h-full w-[10%] border-l-[3px] border-dashed border-red-500 bg-black/70 backdrop-blur-[2px]" />
               </>
             ) : null}
 
@@ -71,7 +71,7 @@ const ConfirmPost = ({
                 {dimensions.aspectRatio}
               </span>
               {dimensions.valid ? (
-                <FiCheck className="ml-1.5 text-lg text-green-400" />
+                <FiCheck className="ml-1.5 text-lg text-green-500" />
               ) : (
                 <FiX className="ml-1.5 text-lg text-red-500" />
               )}

@@ -27,7 +27,7 @@ const DashboardNav = () => {
             <li
               className={`inline-block ${
                 router.pathname == "/dashboard"
-                  ? "border-b-[1px] border-white"
+                  ? "border-b-[2px] border-white"
                   : ""
               }
                      pb-2 duration-200`}>
@@ -44,7 +44,7 @@ const DashboardNav = () => {
             <li
               className={`inline-block ${
                 router.pathname == "/dashboard/create"
-                  ? "border-b-[1px] border-white"
+                  ? "border-b-[2px] border-white"
                   : ""
               }
                      pb-2 duration-200`}>
