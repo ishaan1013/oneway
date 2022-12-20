@@ -8,10 +8,12 @@ import { FiFilePlus } from "react-icons/fi"
 import DashboardNav from "../../components/dashboard/nav"
 
 import { useGlobalContext } from "../../context"
+import { Session } from "next-auth"
 
-const Dashboard = () => {
+const Dashboard = ({ session }: { session: Session }) => {
   const { igUserId } = useGlobalContext()
-  const session = getSession()
+  // const session = getSession()
+  const id = session?.accessToken ?? "none"
   // const { data: session } = useSession()
 
   return (
@@ -24,10 +26,8 @@ const Dashboard = () => {
       </Head>
 
       <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 pb-16 md:px-16">
-        {/* dashboard */}
-
+        dashboard {id}
         <DashboardNav />
-
         <div className="mb-3 flex w-full items-center justify-between">
           <div>
             <h1 className="text-left text-xl font-bold">Account Overview</h1>
