@@ -8,13 +8,18 @@ import { FiFilePlus } from "react-icons/fi"
 import DashboardNav from "../../components/dashboard/nav"
 
 import { useGlobalContext } from "../../context"
-import { Session } from "next-auth"
+import { Session, User } from "next-auth"
+import { getToken, JWT } from "next-auth/jwt"
+import Post from "../../components/dashboard/post"
 
-const Dashboard = ({ session }: { session: Session }) => {
+const Dashboard = ({
+  user,
+  accessToken,
+}: {
+  user: User
+  accessToken: string
+}) => {
   const { igUserId } = useGlobalContext()
-  // const session = getSession()
-  const id = session?.accessToken ?? "none"
-  // const { data: session } = useSession()
 
   return (
     <div>
@@ -26,14 +31,18 @@ const Dashboard = ({ session }: { session: Session }) => {
       </Head>
 
       <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 pb-16 md:px-16">
-        dashboard {id}
+        <p className="max-w-3xl text-sm text-neutral-500">
+          user: {JSON.stringify(user)}
+        </p>
+        <p className="max-w-3xl text-sm text-neutral-500">
+          accessToken: {accessToken}
+        </p>
         <DashboardNav />
         <div className="mb-3 flex w-full items-center justify-between">
           <div>
             <h1 className="text-left text-xl font-bold">Account Overview</h1>
-            <p className="text-sm opacity-50">Hover images for options.</p>
-            <p className="text-sm opacity-50">
-              Context: {JSON.stringify(session)}
+            <p className="text-sm text-neutral-500">
+              Hover images for options.
             </p>
           </div>
 
@@ -45,13 +54,14 @@ const Dashboard = ({ session }: { session: Session }) => {
           </Link>
         </div>
         <div className="xs:auto-cols-[300px] slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 md:auto-cols-[350px] ">
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-slate-500 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
-          <div className="xs:h-[300px] aspect-square h-[250px] rounded border-[1px] border-white/10 bg-white/5 md:h-[350px]"></div>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
         </div>
       </main>
     </div>
@@ -59,7 +69,18 @@ const Dashboard = ({ session }: { session: Session }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // const token = await getToken(context)
+  // if (token) {
+  //   console.log("JSON Web Token", JSON.stringify(token, null, 2))
+  // } else {
+  //   console.log("no token")
+  // }
   const session = await getSession(context)
+  if (session) {
+    console.log("Session", JSON.stringify(session, null, 2))
+  } else {
+    console.log("no session")
+  }
 
   if (!session) {
     return {
@@ -70,8 +91,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  const { user, accessToken } = session
   return {
-    props: { session },
+    props: { user, accessToken },
   }
 }
 

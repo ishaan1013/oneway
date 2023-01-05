@@ -81,7 +81,7 @@ const Home = () => {
           )}
         </div>
 
-        {/* <h2 className="mb-2 text-2xl font-semibold uppercase text-white/50">
+        {/* <h2 className="mb-2 text-2xl font-semibold uppercase text-neutral-500">
           OneWay
         </h2> */}
         {/* <h1 className="mb-1.5 text-center text-8xl font-bold opacity-70">
@@ -91,7 +91,7 @@ const Home = () => {
           One Way
         </h2> */}
         <LoginButton />
-        <button className="mt-3 text-lg font-medium opacity-90 duration-200 hover:opacity-50">
+        <button className="mt-3 text-lg font-medium duration-200 hover:text-neutral-500">
           About This Project
         </button>
       </main>

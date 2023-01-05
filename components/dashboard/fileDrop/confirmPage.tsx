@@ -59,13 +59,13 @@ const ConfirmPost = ({
 
         {!loading ? (
           <div className="ml-12 flex h-full flex-col items-center justify-center">
-            <div className="text-white/50">
+            <div className="text-neutral-500">
               Dimensions:{" "}
               <span className="font-semibold text-white">
                 {dimensions.width} x {dimensions.height}
               </span>
             </div>
-            <div className="mt-2 flex items-center text-white/50">
+            <div className="mt-2 flex items-center text-neutral-500">
               Aspect Ratio:{" "}
               <span className="ml-1 font-semibold text-white">
                 {dimensions.aspectRatio}
@@ -133,8 +133,8 @@ const ConfirmPost = ({
               }}
               className={`p-2 text-center text-base ${
                 dimensions.valid
-                  ? "opacity-50 hover:opacity-30"
-                  : "opacity-80 hover:opacity-50"
+                  ? "text-neutral-500 hover:text-neutral-600"
+                  : "text-neutral-400 hover:text-neutral-500"
               } duration-200`}>
               Cancel Post
             </button>

@@ -25,7 +25,7 @@ const SizeChecks = ({
                 disabled={verticalCheck}
                 className={`flex select-none items-center justify-center rounded border-[1px] ${
                   horizontalCheck
-                    ? "border-white/50 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
+                    ? "border-neutral-500 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
                     : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:border-white/25 disabled:hover:bg-black"
                 } p-1.5 text-2xl font-medium duration-200`}>
                 <TbLineDashed />
@@ -36,7 +36,7 @@ const SizeChecks = ({
                 disabled={horizontalCheck}
                 className={`flex rotate-90 select-none items-center justify-center rounded border-[1px] ${
                   verticalCheck
-                    ? "border-white/50 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
+                    ? "border-neutral-500 bg-white/[0.15] hover:border-white/75 hover:bg-white/25"
                     : "border-white/25 bg-black hover:border-white/75 hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:border-white/25 disabled:hover:bg-black"
                 } p-1.5 text-2xl font-medium duration-200`}>
                 <TbLineDashed />
@@ -49,8 +49,8 @@ const SizeChecks = ({
               sideOffset={5}
               side="bottom">
               {horizontal
-                ? "Horizontal Size Check (1.91:1)"
-                : "Vertical Size Check (4:5)"}
+                ? "Maximum Horizontal Size Check (1.91:1)"
+                : "Maximum Vertical Size Check (4:5)"}
             </Tooltip.Content>
           </Tooltip.Portal>
         </Tooltip.Root>

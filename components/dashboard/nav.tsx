@@ -18,7 +18,7 @@ const DashboardNav = () => {
             <Link href="/dashboard" className="select-none text-xl font-bold">
               OneWay
             </Link>
-            <div className="mx-4 h-5 w-[1.5px] rotate-12 bg-white/50" />
+            <div className="mx-4 h-5 w-[1.5px] rotate-12 bg-neutral-500" />
             <button className="rounded px-2 pt-1 pb-0.5 text-[0.9rem] font-medium text-white/80 duration-200 hover:bg-white/[0.15]">
               @ig_account
             </button>
@@ -56,23 +56,6 @@ const DashboardNav = () => {
                     : "opacity-40 hover:bg-white/20 hover:opacity-70"
                 }`}>
                 Create
-              </Link>
-            </li>
-            <li
-              className={`inline-block ${
-                router.pathname == "/dashboard/settings"
-                  ? "border-b-[2px] border-white"
-                  : ""
-              }
-                     pb-2 duration-200`}>
-              <Link
-                href="/dashboard/settings"
-                className={`rounded px-2 py-1 font-light duration-200 ${
-                  router.pathname == "/dashboard/settings"
-                    ? "opacity-100 hover:bg-white/[0.15]"
-                    : "opacity-40 hover:bg-white/20 hover:opacity-70"
-                }`}>
-                Settings
               </Link>
             </li>
           </ul>

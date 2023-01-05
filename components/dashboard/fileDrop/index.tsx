@@ -75,7 +75,7 @@ const FileDrop = () => {
               <div className="cursor-pointer text-lg font-medium">
                 Upload / Drop
               </div>
-              <p className="text-sm opacity-50">.jpg or .jpeg</p>
+              <p className="text-sm text-neutral-500">.jpg or .jpeg</p>
             </div>
           </UploadPage>
         </>

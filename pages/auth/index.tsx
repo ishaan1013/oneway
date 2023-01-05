@@ -69,23 +69,23 @@ const Login = ({ providers }: { providers: any }) => {
         </button>
       </div>
 
-      <p className="mt-8 text-center text-base text-white/50">
+      <p className="mt-8 text-center text-base text-neutral-500">
         OneWay only works with{" "}
         <span className="font-bold text-white/60">
           public Instagram business accounts.
         </span>
       </p>
-      <p className="mt-2 text-center text-base text-white/50">
+      <p className="mt-2 text-center text-base text-neutral-500">
         The Instagram account must be{" "}
         <span className="font-bold text-white/60">
           connected to a Facebook page.
         </span>
       </p>
-      <p className="mt-8 text-center text-base text-white/50">
+      <p className="mt-8 text-center text-base text-neutral-500">
         You can easily create a Facebook page and link to Instagram in the login
         process.
       </p>
-      <p className="mt-2 text-center text-base text-white/50">
+      <p className="mt-2 text-center text-base text-neutral-500">
         There is no consequence to this — no one will see your Facebook page.
       </p>
     </main>

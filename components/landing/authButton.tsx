@@ -6,7 +6,7 @@ const AuthButton = () => {
   if (session) {
     return (
       <>
-        {/* <p className="mb-6 max-w-3xl text-center text-xs text-white/50">
+        {/* <p className="mb-6 max-w-3xl text-center text-xs text-neutral-500">
           {JSON.stringify(session)}
         </p> */}
         <div
