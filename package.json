@@ -19,6 +19,7 @@
     "@types/react-dom": "18.0.9",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
+    "jotai": "^1.12.1",
     "next": "13.0.4",
     "next-auth": "^4.17.0",
     "prettier-plugin-tailwindcss": "^0.1.13",

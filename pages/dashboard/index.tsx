@@ -1,25 +1,36 @@
+import { useEffect } from "react"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect } from "react"
-import { getSession, useSession } from "next-auth/react"
 import { GetServerSideProps } from "next"
-import { FiFilePlus } from "react-icons/fi"
+import { Session, User } from "next-auth"
+import { getSession, useSession } from "next-auth/react"
 
 import DashboardNav from "../../components/dashboard/nav"
-
-import { useGlobalContext } from "../../context"
-import { Session, User } from "next-auth"
-import { getToken, JWT } from "next-auth/jwt"
 import Post from "../../components/dashboard/post"
+
+import { FiFilePlus } from "react-icons/fi"
+
+import { useHydrateAtoms } from "jotai/utils"
+import {
+  fbPagesAtom,
+  accessTokenAtom,
+  fbUserAtom,
+  selectedPageAtom,
+} from "../../utils/store"
+import { useAtom } from "jotai"
 
 const Dashboard = ({
   user,
   accessToken,
+  pages,
 }: {
   user: User
   accessToken: string
+  pages: any
 }) => {
-  const { igUserId } = useGlobalContext()
+  useHydrateAtoms([[fbUserAtom, user]] as const)
+  useHydrateAtoms([[accessTokenAtom, accessToken]] as const)
+  useHydrateAtoms([[fbPagesAtom, pages]] as const)
 
   return (
     <div>
@@ -31,19 +42,16 @@ const Dashboard = ({
       </Head>
 
       <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 pb-16 md:px-16">
-        <p className="max-w-3xl text-sm text-neutral-500">
-          user: {JSON.stringify(user)}
-        </p>
-        <p className="max-w-3xl text-sm text-neutral-500">
-          accessToken: {accessToken}
-        </p>
         <DashboardNav />
         <div className="mb-3 flex w-full items-center justify-between">
-          <div>
-            <h1 className="text-left text-xl font-bold">Account Overview</h1>
-            <p className="text-sm text-neutral-500">
-              Hover images for options.
-            </p>
+          <div className="flex items-center space-x-3">
+            <div>
+              <h1 className="text-left text-xl font-bold">Account Overview</h1>
+              <p className="text-sm text-neutral-500">
+                Hover images for options.
+              </p>
+            </div>
+            <div className="rounded-full border-[1px] border-white/25 "></div>
           </div>
 
           <Link href="/dashboard/create">
@@ -92,8 +100,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const { user, accessToken } = session
+
+  const pagesRes = await fetch(
+    `https://graph.facebook.com/v15.0/${user.id}/accounts?access_token=${accessToken}`
+  )
+  const pagesData = await pagesRes.json()
+  console.log(
+    "🚀 ~ file: index.tsx:98 ~ constgetServerSideProps:GetServerSideProps= ~ pagesData",
+    pagesData
+  )
+
   return {
-    props: { user, accessToken },
+    props: { user, accessToken, pages: pagesData },
   }
 }
 
