@@ -16,6 +16,7 @@ import {
   accessTokenAtom,
   fbUserAtom,
   selectedPageAtom,
+  igIdAtom,
 } from "../../utils/store"
 import { useAtom } from "jotai"
 
@@ -23,16 +24,17 @@ const Dashboard = ({
   user,
   accessToken,
   pages,
+  igId,
 }: {
   user: User
   accessToken: string
   pages: any
+  igId: string
 }) => {
   useHydrateAtoms([[fbUserAtom, user]] as const)
   useHydrateAtoms([[accessTokenAtom, accessToken]] as const)
   useHydrateAtoms([[fbPagesAtom, pages]] as const)
-
-  useEffect(() => {}, [])
+  useHydrateAtoms([[igIdAtom, igId]] as const)
 
   return (
     <div>
@@ -103,17 +105,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const { user, accessToken } = session
 
-  const pagesRes = await fetch(
+  const pRes = await fetch(
     `https://graph.facebook.com/v15.0/${user.id}/accounts?access_token=${accessToken}`
   )
-  const pagesData = await pagesRes.json()
+  const pData = await pRes.json()
   console.log(
     "🚀 ~ file: index.tsx:98 ~ constgetServerSideProps:GetServerSideProps= ~ pagesData",
-    pagesData
+    pData
   )
 
   return {
-    props: { user, accessToken, pages: pagesData },
+    props: { user, accessToken, pages: pData },
   }
 }
 

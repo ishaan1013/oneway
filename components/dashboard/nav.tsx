@@ -1,14 +1,42 @@
 import { useAtom } from "jotai"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FiFile, FiMenu } from "react-icons/fi"
-import { fbPagesAtom } from "../../utils/store"
+import {
+  accessTokenAtom,
+  fbPagesAtom,
+  fbUserAtom,
+  selectedPageAtom,
+} from "../../utils/store"
 
 import UserDropdown from "./userDropdown"
 
 const DashboardNav = () => {
   const router = useRouter()
   const [fbPages] = useAtom(fbPagesAtom)
+  const [accessToken] = useAtom(accessTokenAtom)
+  const [selected, setSelected] = useAtom(selectedPageAtom)
+
+  const [username, setUsername] = useState("insta username")
+
+  useEffect(() => {
+    const getIg = async () => {
+      const data = await fetch(
+        `https://graph.facebook.com/v15.0/${fbPages?.data[selected]?.id}?fields=instagram_business_account&access_token=${accessToken}`
+      )
+      return await data.json()
+    }
+    const getUsername = async (igData: any) => {
+      const data = await fetch(
+        `https://graph.facebook.com/v15.0/${igData?.instagram_business_account?.id}?fields=username&access_token=${accessToken}`
+      )
+      return await data.json()
+    }
+    getIg().then((igData) => {
+      getUsername(igData).then((res) => setUsername(res?.username))
+    })
+  }, [selected])
 
   return (
     <nav className="xs:px-8 fixed top-0 z-50 w-screen overflow-hidden border-b-[1px] border-white/20 bg-black/60 px-4 pt-4 backdrop-blur-lg md:px-16">
@@ -23,7 +51,7 @@ const DashboardNav = () => {
               </Link>
               <div className="xs:!mx-4 ml-3 mr-1 h-5 w-[1.5px] rotate-12 bg-neutral-500" />
               <button className="rounded px-2 pt-1 pb-0.5 text-[0.9rem] font-medium text-white/80 duration-200 hover:bg-white/[0.15]">
-                @ig_account
+                @{username}
               </button>
             </div>
             <ul className="mt-3 list-none space-x-3">
