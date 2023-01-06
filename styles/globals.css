@@ -114,3 +114,18 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.acct-select::-webkit-scrollbar {
+  width: 15px;
+  z-index: 100;
+}
+
+.acct-select::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: #111111;
+}
+
+.acct-select::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #222222;
+}
