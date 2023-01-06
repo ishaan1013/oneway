@@ -3,9 +3,9 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { TbChevronDownLeft } from "react-icons/tb"
 import { BiLink } from "react-icons/bi"
 import { BsInstagram, BsFacebook } from "react-icons/bs"
-import LoginButton from "../landing/authButton"
+import LoginButton from "../../landing/authButton"
 import { useAtom } from "jotai"
-import { fbUserAtom } from "../../utils/store"
+import { fbUserAtom } from "../../../utils/store"
 import Image from "next/image"
 
 const UserDropdown = () => {
