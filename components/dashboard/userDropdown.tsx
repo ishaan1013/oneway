@@ -12,7 +12,7 @@ const UserDropdown = () => {
   const [fbUser] = useAtom(fbUserAtom)
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild className="group">
+      <DropdownMenu.Trigger asChild className="group hidden md:block">
         <button className="peer overflow-hidden rounded-full border-[1px] border-white/25 bg-black p-1 backdrop-blur-md duration-200 hover:border-white/75 hover:bg-white/10 ">
           {/* <AiOutlineUser className="h-[2.7rem] w-[2.7rem] p-2.5" /> */}
           <Image

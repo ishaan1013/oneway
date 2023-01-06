@@ -32,6 +32,8 @@ const Dashboard = ({
   useHydrateAtoms([[accessTokenAtom, accessToken]] as const)
   useHydrateAtoms([[fbPagesAtom, pages]] as const)
 
+  useEffect(() => {}, [])
+
   return (
     <div>
       <Head>
