@@ -47,7 +47,7 @@ const Dashboard = ({
       </Head>
 
       <AccountPopup />
-      <main className="xs:px-8 relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 pb-16 md:px-16">
+      <main className="relative z-10 flex min-h-screen w-screen flex-col items-center justify-start overflow-x-hidden px-4 pt-32 pb-16 xs:px-8 md:px-16">
         <DashboardNav />
         <div className="mb-3 flex w-full items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -67,7 +67,7 @@ const Dashboard = ({
             </button>
           </Link>
         </div>
-        <div className="xs:auto-cols-[300px] slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 md:auto-cols-[350px] ">
+        <div className="slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 xs:auto-cols-[300px] md:auto-cols-[350px] ">
           <Post />
           <Post />
           <Post />
