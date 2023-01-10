@@ -13,9 +13,17 @@ export default async function handler(
 
   try {
     if (req.query.token && req.query.pageId) { 
-      const data = await fetch(`https://graph.facebook.com/v15.0/${req.query.pageId}?fields=instagram_business_account&access_token=${req.query.token}`)
-      const json = await data.json()
-      res.status(200).json({ success: true, message: json })
+      const data1 = await fetch(`https://graph.facebook.com/v15.0/${req.query.pageId}?fields=instagram_business_account&access_token=${req.query.token}`)
+      const json1 = await data1.json()
+      const data2 = await fetch(`https://graph.facebook.com/v15.0/${json1.instagram_business_account.id}?fields=username&access_token=${req.query.token}`)
+      const json2 = await data2.json()
+      const response = {
+        id: json1.instagram_business_account.id,
+        username: json2.username
+      }
+      console.log("🚀 ~ file: igAccount.ts ~ json1", json1)
+      console.log("🚀 ~ file: igAccount.ts ~ json2", json2)
+      res.status(200).json({ success: true, message: response })
     }
     else {
       res.status(400).json({ success: false, message: "invalid query" })
