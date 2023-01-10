@@ -20,6 +20,7 @@ import {
 } from "../../utils/store"
 import { useAtom } from "jotai"
 import AccountPopup from "../../components/dashboard/accountPopup"
+import Slider from "../../components/dashboard/slider"
 
 const Dashboard = ({
   user,
@@ -67,16 +68,7 @@ const Dashboard = ({
             </button>
           </Link>
         </div>
-        <div className="slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 xs:auto-cols-[300px] md:auto-cols-[350px] ">
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-        </div>
+        <Slider />
       </main>
     </div>
   )
