@@ -71,7 +71,7 @@ const AccountPopup = () => {
                   {data?.data?.map((page: any, i: number) => {
                     return (
                       <>
-                        <Page on={on} setOn={setOn} data={page} />
+                        <Page on={on} setOn={setOn} data={page} i={i} />
                       </>
                     )
                   })}

@@ -103,10 +103,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `https://graph.facebook.com/v15.0/${user.id}/accounts?access_token=${accessToken}`
   )
   const pData = await pRes.json()
-  console.log(
-    "🚀 ~ file: index.tsx:98 ~ constgetServerSideProps:GetServerSideProps= ~ pagesData",
-    pData
-  )
+  // console.log(
+  //   "🚀 ~ file: index.tsx:98 ~ constgetServerSideProps:GetServerSideProps= ~ pagesData",
+  //   pData
+  // )
 
   return {
     props: { user, accessToken, pages: pData },

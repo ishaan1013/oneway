@@ -6,7 +6,10 @@ const nextConfig = {
     remotePatterns: [
       {
         hostname: "platform-lookaside.fbsbx.com"
-      }
+      },
+      {
+        hostname: "scontent.cdninstagram.com"
+      },
     ]
   }
 }

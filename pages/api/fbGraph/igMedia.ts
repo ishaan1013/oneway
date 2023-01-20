@@ -10,7 +10,7 @@ export default async function handler(
   if (method === 'GET') {
     try {
       if (req.query.token && req.query.igUserId) { 
-        const data = await fetch(`https://graph.facebook.com/v15.0/${req.query.igUserId}/media?access_token=${req.query.token}`)
+        const data = await fetch(`https://graph.facebook.com/v15.0/${req.query.igUserId}/media?fields=media_url&access_token=${req.query.token}`)
         const json = await data.json()
         res.status(200).json({ success: true, message: json })
       }
@@ -22,7 +22,7 @@ export default async function handler(
       res.status(500).json({ success: false, message: error })
     }
   } 
-  if (method === 'POST') {
+  else if (method === 'POST') {
     try {
       if (req.query.token && req.query.igUserId && req.query.imageUrl && req.query.caption) { 
         const data = await fetch(`https://graph.facebook.com/v15.0/${req.query.igUserId}/media?image_url=${req.query.imageUrl}&caption=${req.query.caption}&access_token=${req.query.token}`, {

@@ -21,8 +21,6 @@ export default async function handler(
         id: json1.instagram_business_account.id,
         username: json2.username
       }
-      console.log("🚀 ~ file: igAccount.ts ~ json1", json1)
-      console.log("🚀 ~ file: igAccount.ts ~ json2", json2)
       res.status(200).json({ success: true, message: response })
     }
     else {

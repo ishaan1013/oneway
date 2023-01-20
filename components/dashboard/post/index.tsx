@@ -1,9 +1,21 @@
+import Image from "next/image"
 import { FiEdit2, FiTrash } from "react-icons/fi"
 
-const Post = () => {
+const Post = ({
+  i,
+  post,
+}: {
+  i: number
+  post: { media_url: string; id: string }
+}) => {
   return (
-    <div className="group relative aspect-square h-[250px] overflow-hidden rounded bg-blue-900 xs:h-[300px] md:h-[350px]">
-      <div className="absolute -top-16 -right-12 h-36 w-44 rounded-full bg-black opacity-0 blur-3xl duration-100 group-hover:opacity-100" />
+    <div
+      key={i}
+      className="group relative aspect-square h-[250px] overflow-hidden rounded bg-white/10 xs:h-[300px] md:h-[350px]">
+      <div className="relative z-0 h-full w-full">
+        <Image src={post.media_url} alt="Instagram Post" fill={true} />
+      </div>
+      <div className="absolute -top-16 -right-20 z-10 h-44 w-56 rounded-full bg-black opacity-0 blur-3xl duration-100 group-hover:opacity-100" />
       <div className="absolute top-2 right-2 z-10 flex space-x-1.5 opacity-0 duration-200 group-hover:opacity-100">
         <button className="rounded-full border-[1px] border-white/25 backdrop-blur-md duration-200 hover:border-white/75 hover:bg-white/10 ">
           <FiEdit2 className="h-8 w-8 p-2" />

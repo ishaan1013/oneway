@@ -8,10 +8,12 @@ const Page = ({
   on,
   setOn,
   data,
+  i,
 }: {
   on: boolean
   setOn: (on: boolean) => void
   data: any
+  i: number
 }) => {
   const [open, setOpen] = useState(false)
   const [accessToken] = useAtom(accessTokenAtom)
@@ -47,6 +49,7 @@ const Page = ({
         !on && setOpen(true)
         console.log("🚀 ~ file: page.tsx:31 ~ Page ~ on", on)
       }}
+      key={i}
       className={`${
         open
           ? "-translate-x-72"

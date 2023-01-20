@@ -30,9 +30,9 @@ const Slider = () => {
       )
       return await res.json()
     }
-    const getIgMedia = async () => {
+    const getIgMedia = async (id: string) => {
       const res = await fetch(
-        `/api/fbGraph/igMedia?igUserId=${igId}&token=${accessToken}`,
+        `/api/fbGraph/igMedia?igUserId=${id}&token=${accessToken}`,
         {
           method: "GET",
         }
@@ -43,24 +43,18 @@ const Slider = () => {
       console.log("🚀 ~ file: page.tsx:33 ~ getIg ~ res", res)
       setIgData(res.message)
       setIgId(res.message.id)
-      getIgMedia().then((res) => {
+      getIgMedia(res.message.id).then((res) => {
         setIgMedia(res?.message?.data)
-        console.log("igMedia:", res)
       })
     })
   }, [])
 
   return (
     <div className="slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 xs:auto-cols-[300px] md:auto-cols-[350px] ">
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <div>{JSON.stringify(igMedia)}</div>
+      {igMedia?.map((post: { media_url: string; id: string }, i: number) => (
+        <Post i={i} post={post} />
+      ))}
+      {/* <div>{JSON.stringify(igMedia)}</div> */}
     </div>
   )
 }
