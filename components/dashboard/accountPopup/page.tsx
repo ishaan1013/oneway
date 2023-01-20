@@ -2,7 +2,11 @@ import { useAtom } from "jotai"
 import { useEffect, useState } from "react"
 import { FiFile, FiInstagram } from "react-icons/fi"
 import { RiArrowLeftLine } from "react-icons/ri"
-import { accessTokenAtom } from "../../../utils/store"
+import {
+  accessTokenAtom,
+  accountPopupAtom,
+  selectedPageAtom,
+} from "../../../utils/store"
 
 const Page = ({
   on,
@@ -17,9 +21,13 @@ const Page = ({
 }) => {
   const [open, setOpen] = useState(false)
   const [accessToken] = useAtom(accessTokenAtom)
+  const [selectedPage, setSelectedPage] = useAtom(selectedPageAtom)
+  const [opened, setOpened] = useAtom(accountPopupAtom)
   const [igData, setIgData] = useState<{ id?: number; username: string }>({
     username: "No IG",
   })
+
+  const match = selectedPage === i
 
   useEffect(() => {
     const getIg = async () => {
@@ -55,18 +63,31 @@ const Page = ({
           ? "-translate-x-72"
           : on
           ? "translate-x-0 opacity-30"
-          : "translate-x-0 hover:border-white/75 hover:bg-white/10"
-      } relative flex min-w-[340px] max-w-[360px] items-center rounded border-[1px] border-white/25 transition-all duration-200`}>
-      <div className="absolute left-[23rem] flex flex-col space-y-1 text-left">
+          : `translate-x-0 ${
+              match
+                ? "hover:border-white hover:bg-white/[0.15]"
+                : "hover:border-white/75 hover:bg-white/10"
+            }`
+      } relative flex min-w-[340px] max-w-[360px] items-center rounded border-[1px] ${
+        match ? "border-white/75 bg-white/5" : "border-white/25 bg-black"
+      } transition-all duration-200`}>
+      <div className="absolute left-[22rem] flex flex-col space-y-1 text-left">
         <div className="flex items-center space-x-1">
           <FiInstagram />
           <div className="w-48 overflow-hidden text-ellipsis whitespace-nowrap font-semibold">
             {igData.username}
           </div>
         </div>
-        <button className="self-start rounded border-[1px] border-white/25 bg-white/10 py-1 px-2 text-sm duration-200 hover:border-white/75 hover:bg-white/20">
-          Select Account
-        </button>
+        {open && (
+          <button
+            onClick={() => {
+              setOpened(false)
+              setSelectedPage(i)
+            }}
+            className="self-start rounded border-[1px] border-white/25 bg-white/10 py-1 px-2 text-sm duration-200 hover:border-white/75 hover:bg-white/20">
+            Select Account
+          </button>
+        )}
       </div>
 
       <div
