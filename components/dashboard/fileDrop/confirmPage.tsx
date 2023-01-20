@@ -1,6 +1,8 @@
+import { useAtom } from "jotai"
 import Image from "next/image"
 import { FiCheck, FiX } from "react-icons/fi"
 import { RiArrowLeftLine } from "react-icons/ri"
+import { accessTokenAtom, igIdAtom } from "../../../utils/store"
 import SizeChecks from "./sizeChecks"
 
 const ConfirmPost = ({
@@ -13,6 +15,7 @@ const ConfirmPost = ({
   loading,
   setLoading,
   setFiles,
+  setSuccess,
 }: {
   files: any
   horizontalCheck: boolean
@@ -28,7 +31,25 @@ const ConfirmPost = ({
   loading: boolean
   setLoading: (loading: boolean) => void
   setFiles: (files: any) => void
+  setSuccess: (success: boolean) => void
 }) => {
+  const [accessToken] = useAtom(accessTokenAtom)
+  const [igId] = useAtom(igIdAtom)
+
+  const uploadPost = async () => {
+    const res = await fetch(
+      `/api/fbGraph/igMedia?igUserId=${igId}&imageUrl=${
+        files[0].preview
+      }&caption=${"sitetest"}&token=${accessToken}`,
+      {
+        method: "POST",
+      }
+    )
+    const data = await res.json()
+    console.log("🚀 ~ file: confirmPage.tsx:49 ~ uploadPost ~ data", data)
+    setSuccess(true)
+  }
+
   return (
     <>
       <div className="mt-4 flex h-[400px]">
@@ -66,17 +87,17 @@ const ConfirmPost = ({
                 setVerticalCheck(false)
                 setHorizontalCheck(false)
               }}
-              className={`flex items-center p-2 text-center text-base space-x-2${
+              className={`flex items-center p-2 text-center text-base ${
                 dimensions.valid
                   ? "text-neutral-500 hover:text-neutral-600"
                   : "text-neutral-400 hover:text-neutral-500"
               } duration-200`}>
-              <RiArrowLeftLine />
+              <RiArrowLeftLine className="mr-1.5" />
               Cancel Post
             </button>
             <textarea
               placeholder="Caption"
-              className="mb-6 h-24 w-full resize-none rounded border-[1px] border-white/25 bg-white/5 p-2 placeholder:text-white/50 hover:border-white/75 focus:border-white/75"
+              className="my-4 h-24 w-full resize-none rounded border-[1px] border-white/25 bg-white/5 p-2  placeholder:text-neutral-600 hover:border-white/75 focus:border-white/75"
             />
             <div className="text-neutral-500">
               Dimensions:{" "}
@@ -138,6 +159,7 @@ const ConfirmPost = ({
                   setLoading(true)
                   setVerticalCheck(false)
                   setHorizontalCheck(false)
+                  uploadPost()
                 }}
                 disabled={!dimensions.valid}
                 className="relative flex w-full select-none items-center justify-center rounded bg-black py-1.5 pl-3 pr-4 text-lg font-medium disabled:cursor-not-allowed">

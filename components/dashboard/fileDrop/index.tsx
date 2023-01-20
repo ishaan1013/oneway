@@ -23,13 +23,13 @@ const FileDrop = () => {
     return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview))
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (loading) {
-        setSuccess(true)
-      }
-    }, 3000)
-  }, [loading])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (loading) {
+  //       setSuccess(true)
+  //     }
+  //   }, 3000)
+  // }, [loading])
 
   useEffect(() => {
     if (files.length > 0) {
@@ -91,6 +91,7 @@ const FileDrop = () => {
           setLoading={setLoading}
           files={files}
           setFiles={setFiles}
+          setSuccess={setSuccess}
         />
       )}
     </>

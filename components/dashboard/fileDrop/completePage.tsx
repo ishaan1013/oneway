@@ -43,7 +43,7 @@ const CompletePage = ({
       <div className="mt-3 flex w-[350px] flex-col items-center sm:flex-row sm:justify-center">
         <button
           onClick={() => {
-            setFiles([])
+            // setFiles([])
             setLoading(false)
             setSuccess(false)
           }}
