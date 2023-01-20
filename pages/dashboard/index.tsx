@@ -6,7 +6,7 @@ import { Session, User } from "next-auth"
 import { getSession, useSession } from "next-auth/react"
 
 import DashboardNav from "../../components/dashboard/nav/nav"
-import Post from "../../components/dashboard/post"
+import Post from "../../components/dashboard/post/post"
 
 import { FiFilePlus } from "react-icons/fi"
 

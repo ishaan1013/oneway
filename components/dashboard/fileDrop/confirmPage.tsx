@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { FiCheck, FiX } from "react-icons/fi"
+import { RiArrowLeftLine } from "react-icons/ri"
 import SizeChecks from "./sizeChecks"
 
 const ConfirmPost = ({
@@ -59,13 +60,31 @@ const ConfirmPost = ({
 
         {!loading ? (
           <div className="ml-12 flex h-full flex-col items-center justify-center">
+            <button
+              onClick={() => {
+                setFiles([])
+                setVerticalCheck(false)
+                setHorizontalCheck(false)
+              }}
+              className={`flex items-center p-2 text-center text-base space-x-2${
+                dimensions.valid
+                  ? "text-neutral-500 hover:text-neutral-600"
+                  : "text-neutral-400 hover:text-neutral-500"
+              } duration-200`}>
+              <RiArrowLeftLine />
+              Cancel Post
+            </button>
+            <textarea
+              placeholder="Caption"
+              className="mb-6 h-24 w-full resize-none rounded border-[1px] border-white/25 bg-white/5 p-2 placeholder:text-white/50 hover:border-white/75 focus:border-white/75"
+            />
             <div className="text-neutral-500">
               Dimensions:{" "}
               <span className="font-semibold text-white">
                 {dimensions.width} x {dimensions.height}
               </span>
             </div>
-            <div className="mt-2 flex items-center text-neutral-500">
+            <div className="mt-1 flex items-center text-neutral-500">
               Aspect Ratio:{" "}
               <span className="ml-1 font-semibold text-white">
                 {dimensions.aspectRatio}
@@ -89,7 +108,7 @@ const ConfirmPost = ({
               </>
             )}
 
-            <div className="mt-4 flex space-x-2">
+            <div className="mt-3 flex space-x-2">
               <SizeChecks
                 horizontal
                 horizontalCheck={horizontalCheck}
@@ -125,19 +144,6 @@ const ConfirmPost = ({
                 Publish Image
               </button>
             </div>
-            <button
-              onClick={() => {
-                setFiles([])
-                setVerticalCheck(false)
-                setHorizontalCheck(false)
-              }}
-              className={`p-2 text-center text-base ${
-                dimensions.valid
-                  ? "text-neutral-500 hover:text-neutral-600"
-                  : "text-neutral-400 hover:text-neutral-500"
-              } duration-200`}>
-              Cancel Post
-            </button>
           </div>
         ) : (
           <>

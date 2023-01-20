@@ -5,7 +5,7 @@ import {
   igIdAtom,
   selectedPageAtom,
 } from "../../../utils/store"
-import Post from "../post"
+import Post from "../post/post"
 import { useEffect, useState } from "react"
 
 const Slider = () => {
