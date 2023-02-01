@@ -8,7 +8,13 @@ import { useAtom } from "jotai"
 import { fbUserAtom } from "../../../utils/store"
 import Image from "next/image"
 
-const UserDropdown = () => {
+const UserDropdown = ({
+  fbPage,
+  igPage,
+}: {
+  fbPage: string
+  igPage: string
+}) => {
   const [fbUser] = useAtom(fbUserAtom)
   return (
     <DropdownMenu.Root>
@@ -30,20 +36,26 @@ const UserDropdown = () => {
           className="dropdown-menu-content z-50 w-48 select-none rounded border-[1px] border-white/20 bg-[#191919]/80 p-2 shadow-[0_0px_100px_15px_rgba(0,0,0,0.5)] backdrop-blur duration-200 ease-in-out will-change-[opacity]"
           sideOffset={5}
           align="end">
-          <div className="relative overflow-hidden rounded border-[1px] border-white/10 bg-white/5 px-2 py-3">
+          <div className="relative w-full overflow-hidden rounded border-[1px] border-white/10 bg-white/5 px-2 py-3">
             <div className="custom-gradient absolute -top-12 -right-2 -z-10 h-24 w-24 -rotate-45 rounded-full blur-[32px]" />
             <div className="flex items-center text-neutral-500">
               <BsFacebook className="mr-2" />
-              FB Profile
+              <div className="max-w-[125px] overflow-hidden text-ellipsis whitespace-nowrap">
+                {fbUser?.name ?? "FB Profile"}
+              </div>
             </div>
             <div className="flex items-center  text-neutral-500">
               <TbChevronDownLeft className="ml-2" />
-              FB Page
+              <div className="max-w-[125px] overflow-hidden text-ellipsis whitespace-nowrap">
+                {fbPage ?? "No FB Page"}
+              </div>{" "}
             </div>
             <BiLink className="my-2 translate-x-6 text-neutral-500" />
             <div className="flex items-center">
               <BsInstagram className="mr-2" />
-              IG Profile
+              <div className="max-w-[125px] overflow-hidden text-ellipsis whitespace-nowrap">
+                {fbPage ? igPage : "No Account"}
+              </div>{" "}
             </div>
           </div>
 

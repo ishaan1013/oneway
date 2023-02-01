@@ -13,7 +13,6 @@ import {
 
 import UserDropdown from "./userDropdown"
 import { BiLink } from "react-icons/bi"
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript"
 
 const DashboardNav = () => {
   const router = useRouter()
@@ -60,19 +59,17 @@ const DashboardNav = () => {
               <div className="flex items-center space-x-1">
                 <FiFile />
                 <div className="max-w-[200px] select-none overflow-hidden text-ellipsis whitespace-nowrap">
-                  {fbPages.data
-                    ? fbPages?.data[0]?.name ?? "No Page Detected"
-                    : "No Page Detected"}
+                  {fbPages?.data?.[0]?.name ?? "No Page Detected"}
                 </div>
               </div>
-              {fbPages.data && fbPages?.data[0]?.name && (
+              {fbPages?.data?.[0]?.name && (
                 <>
                   <BiLink className="text-neutral-500" />
                   <div
                     className={`max-w-[250px] overflow-hidden text-ellipsis ${
                       username ? "" : "font-semibold text-red-500"
                     }`}>
-                    @{username ? username : "No Instagram Account Linked"}
+                    @{username ?? "No Instagram Account Linked"}
                   </div>
                 </>
               )}
@@ -115,7 +112,7 @@ const DashboardNav = () => {
           </ul>
         </div>
 
-        <UserDropdown />
+        <UserDropdown fbPage={fbPages?.data?.[0]?.name} igPage={username} />
         <button className="block rounded border-[1px] border-white/25 p-2 text-xl duration-200 hover:border-white/75 hover:bg-white/10 md:hidden">
           <FiMenu />
         </button>
