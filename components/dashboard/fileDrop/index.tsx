@@ -8,6 +8,7 @@ import CompletePage from "./completePage"
 
 const FileDrop = () => {
   const [files, setFiles] = useState<any>([])
+  const [uploadFile, setUploadFile] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [horizontalCheck, setHorizontalCheck] = useState<boolean>(false)
@@ -20,7 +21,10 @@ const FileDrop = () => {
   }>({ width: 0, height: 0, aspectRatio: "", valid: true })
 
   useEffect(() => {
-    return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview))
+    return () => {
+      files.forEach((file: any) => URL.revokeObjectURL(file.preview))
+      console.log("cleanup")
+    }
   }, [])
 
   // useEffect(() => {
@@ -49,6 +53,7 @@ const FileDrop = () => {
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
+            post: URL.createObjectURL(file),
           })
         )
       )

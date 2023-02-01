@@ -10,6 +10,12 @@ const nextConfig = {
       {
         hostname: "scontent.cdninstagram.com"
       },
+      {
+        hostname: "cdninstagram.com"
+      },
+      {
+        hostname: "scontent-yyz1-1.cdninstagram.com"
+      },
     ]
   }
 }

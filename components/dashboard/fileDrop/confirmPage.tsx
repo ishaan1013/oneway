@@ -39,7 +39,7 @@ const ConfirmPost = ({
   const uploadPost = async () => {
     const res = await fetch(
       `/api/fbGraph/igMedia?igUserId=${igId}&imageUrl=${
-        files[0].preview
+        files[0].post
       }&caption=${"sitetest"}&token=${accessToken}`,
       {
         method: "POST",

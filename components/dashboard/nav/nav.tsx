@@ -13,6 +13,7 @@ import {
 
 import UserDropdown from "./userDropdown"
 import { BiLink } from "react-icons/bi"
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript"
 
 const DashboardNav = () => {
   const router = useRouter()
@@ -27,7 +28,7 @@ const DashboardNav = () => {
   useEffect(() => {
     const getIg = async () => {
       const data = await fetch(
-        `https://graph.facebook.com/v15.0/${fbPages?.data[selected]?.id}?fields=instagram_business_account&access_token=${accessToken}`
+        `https://graph.facebook.com/v15.0/${fbPages?.data?.[selected]?.id}?fields=instagram_business_account&access_token=${accessToken}`
       )
       return await data.json()
     }

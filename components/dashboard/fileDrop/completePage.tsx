@@ -21,6 +21,7 @@ const CompletePage = ({
         <FiCheck className="h-full w-full rounded-full border-[1px] border-white/25 bg-black px-2 pt-2.5 pb-1.5 text-white" />
       </div>
       <div className="text-lg font-medium">Successfully Uploaded</div>
+      <div className="text-xs">{files[0].post}</div>
 
       <div
         className="mt-4 inline-flex h-[350px] w-[350px] overflow-hidden rounded border-[1px] border-white/25 bg-black"
@@ -43,7 +44,7 @@ const CompletePage = ({
       <div className="mt-3 flex w-[350px] flex-col items-center sm:flex-row sm:justify-center">
         <button
           onClick={() => {
-            // setFiles([])
+            setFiles([])
             setLoading(false)
             setSuccess(false)
           }}
