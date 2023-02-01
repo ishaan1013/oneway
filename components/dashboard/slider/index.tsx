@@ -52,7 +52,7 @@ const Slider = () => {
   return (
     <div className="slider relative grid w-full auto-cols-[250px] grid-flow-col gap-8 overflow-x-auto pt-2 pb-4 xs:auto-cols-[300px] md:auto-cols-[350px] ">
       {igMedia?.map((post: { media_url: string; id: string }, i: number) => (
-        <Post i={i} post={post} />
+        <Post key={i} post={post} />
       ))}
       {/* <div>{JSON.stringify(igMedia)}</div> */}
     </div>
