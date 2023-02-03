@@ -8,7 +8,6 @@ import CompletePage from "./completePage"
 
 const FileDrop = () => {
   const [files, setFiles] = useState<any>([])
-  const [uploadFile, setUploadFile] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [horizontalCheck, setHorizontalCheck] = useState<boolean>(false)
@@ -27,13 +26,14 @@ const FileDrop = () => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (loading) {
-  //       setSuccess(true)
-  //     }
-  //   }, 3000)
-  // }, [loading])
+  useEffect(() => {
+    setTimeout(() => {
+      if (loading) {
+        setSuccess(true)
+        console.log("files:", files[0])
+      }
+    }, 3000)
+  }, [loading])
 
   useEffect(() => {
     if (files.length > 0) {
@@ -53,7 +53,6 @@ const FileDrop = () => {
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-            post: URL.createObjectURL(file),
           })
         )
       )

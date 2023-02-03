@@ -37,16 +37,43 @@ const ConfirmPost = ({
   const [igId] = useAtom(igIdAtom)
 
   const uploadPost = async () => {
-    const res = await fetch(
+    const s3Res = await fetch(`/api/s3/upload`, {
+      method: "POST",
+      body: JSON.stringify({ name: files[0].name, type: files[0].type }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    const s3data = await s3Res.json()
+    console.log("🚀 ~ file: confirmPage.tsx:48 ~ uploadPost ~ s3data", s3data)
+
+    const uploadRes = await fetch(s3data.url, {
+      method: "PUT",
+      body: files[0],
+      headers: {
+        "Content-Type": files[0].type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+    // const uploadData = await uploadRes.json()
+    console.log(
+      "🚀 ~ file: confirmPage.tsx:59 ~ uploadPost ~ uploadRes",
+      uploadRes
+    )
+
+    const postRes = await fetch(
       `/api/fbGraph/igMedia?igUserId=${igId}&imageUrl=${
-        files[0].post
+        s3data.url.split("?")[0]
       }&caption=${"sitetest"}&token=${accessToken}`,
       {
         method: "POST",
       }
     )
-    const data = await res.json()
-    console.log("🚀 ~ file: confirmPage.tsx:49 ~ uploadPost ~ data", data)
+    const postData = await postRes.json()
+    console.log(
+      "🚀 ~ file: confirmPage.tsx:57 ~ uploadPost ~ postData",
+      postData
+    )
     setSuccess(true)
   }
 
