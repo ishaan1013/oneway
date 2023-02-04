@@ -27,14 +27,14 @@ const FileDrop = () => {
     }
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (loading) {
-        setSuccess(true)
-        console.log("files:", files[0])
-      }
-    }, 3000)
-  }, [loading])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (loading) {
+  //       setSuccess(true)
+  //       console.log("files:", files[0])
+  //     }
+  //   }, 3000)
+  // }, [loading])
 
   useEffect(() => {
     if (files.length > 0) {

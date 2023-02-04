@@ -1,5 +1,6 @@
 import { useAtom } from "jotai"
 import Image from "next/image"
+import { useState } from "react"
 import { FiCheck, FiX } from "react-icons/fi"
 import { RiArrowLeftLine } from "react-icons/ri"
 import { accessTokenAtom, igIdAtom } from "../../../utils/store"
@@ -38,6 +39,8 @@ const ConfirmPost = ({
   const [accessToken] = useAtom(accessTokenAtom)
   const [igId] = useAtom(igIdAtom)
 
+  const [caption, setCaption] = useState("")
+
   const uploadPost = async () => {
     const s3Res = await fetch(`/api/s3/upload`, {
       method: "POST",
@@ -66,7 +69,7 @@ const ConfirmPost = ({
     const postRes = await fetch(
       `/api/fbGraph/igMedia?igUserId=${igId}&imageUrl=${
         s3data.url.split("?")[0]
-      }&caption=${"sitetest"}&token=${accessToken}`,
+      }&caption=${caption}&token=${accessToken}`,
       {
         method: "POST",
       }
@@ -142,6 +145,8 @@ const ConfirmPost = ({
             </button>
             <textarea
               placeholder="Caption"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
               className="my-4 h-24 w-full resize-none rounded border-[1px] border-white/25 bg-white/5 p-2  placeholder:text-neutral-600 hover:border-white/75 focus:border-white/75"
             />
             <div className="text-neutral-500">
@@ -204,6 +209,7 @@ const ConfirmPost = ({
                   setLoading(true)
                   setVerticalCheck(false)
                   setHorizontalCheck(false)
+
                   uploadPost()
                 }}
                 disabled={!dimensions.valid}
