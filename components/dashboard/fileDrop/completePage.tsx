@@ -1,26 +1,33 @@
 import Image from "next/image"
 import Link from "next/link"
 import { BsArrowRepeat, BsArrowReturnRight } from "react-icons/bs"
-import { FiCheck } from "react-icons/fi"
+import { FiCheck, FiX } from "react-icons/fi"
 
 const CompletePage = ({
   files,
   setFiles,
   setLoading,
   setSuccess,
+  failure,
 }: {
   files: any
   setFiles: (files: any) => void
   setLoading: (loading: boolean) => void
   setSuccess: (success: boolean) => void
+  failure: boolean
 }) => {
+  const iconCn =
+    "h-full w-full rounded-full border-[1px] border-white/25 bg-black px-2 pt-2.5 pb-1.5"
+
   return (
     <>
       <div className="relative z-10 mb-3 -mt-3 flex h-12 w-12 items-center justify-center">
         <div className="custom-gradient absolute -z-10 h-12 w-12 rounded-full blur-xl" />
-        <FiCheck className="h-full w-full rounded-full border-[1px] border-white/25 bg-black px-2 pt-2.5 pb-1.5 text-white" />
+        {failure ? <FiX className={iconCn} /> : <FiCheck className={iconCn} />}
       </div>
-      <div className="text-lg font-medium">Successfully Uploaded</div>
+      <div className="text-lg font-medium">
+        {failure ? "Upload Failed" : "Successfully Uploaded"}
+      </div>
       {/* <div className="text-xs">{JSON.stringify(files[0].post)}</div> */}
 
       <div

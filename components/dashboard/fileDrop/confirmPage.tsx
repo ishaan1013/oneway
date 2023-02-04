@@ -16,6 +16,7 @@ const ConfirmPost = ({
   setLoading,
   setFiles,
   setSuccess,
+  setFailure,
 }: {
   files: any
   horizontalCheck: boolean
@@ -32,6 +33,7 @@ const ConfirmPost = ({
   setLoading: (loading: boolean) => void
   setFiles: (files: any) => void
   setSuccess: (success: boolean) => void
+  setFailure: (success: boolean) => void
 }) => {
   const [accessToken] = useAtom(accessTokenAtom)
   const [igId] = useAtom(igIdAtom)
@@ -74,6 +76,22 @@ const ConfirmPost = ({
       "🚀 ~ file: confirmPage.tsx:57 ~ uploadPost ~ postData",
       postData
     )
+
+    if (postData?.message?.id) {
+      const publishRes = await fetch(
+        `/api/fbGraph/igPublish?igUserId=${igId}&creationId=${postData?.message?.id}&token=${accessToken}`,
+        {
+          method: "POST",
+        }
+      )
+      const publishData = await publishRes.json()
+      console.log(
+        "🚀 ~ file: confirmPage.tsx:89 ~ uploadPost ~ publishData",
+        publishData
+      )
+    } else {
+      setFailure(true)
+    }
     setSuccess(true)
   }
 
