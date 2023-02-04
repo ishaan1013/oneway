@@ -8,9 +8,9 @@ import CompletePage from "./completePage"
 
 const FileDrop = () => {
   const [files, setFiles] = useState<any>([])
-  const [uploadFile, setUploadFile] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
+  const [failure, setFailure] = useState<boolean>(false)
   const [horizontalCheck, setHorizontalCheck] = useState<boolean>(false)
   const [verticalCheck, setVerticalCheck] = useState<boolean>(false)
   const [dimensions, setDimensions] = useState<{
@@ -31,6 +31,7 @@ const FileDrop = () => {
   //   setTimeout(() => {
   //     if (loading) {
   //       setSuccess(true)
+  //       console.log("files:", files[0])
   //     }
   //   }, 3000)
   // }, [loading])
@@ -53,7 +54,6 @@ const FileDrop = () => {
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-            post: URL.createObjectURL(file),
           })
         )
       )
@@ -84,6 +84,7 @@ const FileDrop = () => {
           setFiles={setFiles}
           setSuccess={setSuccess}
           setLoading={setLoading}
+          failure={failure}
         />
       ) : (
         <ConfirmPost
@@ -97,6 +98,7 @@ const FileDrop = () => {
           files={files}
           setFiles={setFiles}
           setSuccess={setSuccess}
+          setFailure={setFailure}
         />
       )}
     </>

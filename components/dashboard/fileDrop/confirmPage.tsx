@@ -1,5 +1,6 @@
 import { useAtom } from "jotai"
 import Image from "next/image"
+import { useState } from "react"
 import { FiCheck, FiX } from "react-icons/fi"
 import { RiArrowLeftLine } from "react-icons/ri"
 import { accessTokenAtom, igIdAtom } from "../../../utils/store"
@@ -16,6 +17,7 @@ const ConfirmPost = ({
   setLoading,
   setFiles,
   setSuccess,
+  setFailure,
 }: {
   files: any
   horizontalCheck: boolean
@@ -32,21 +34,67 @@ const ConfirmPost = ({
   setLoading: (loading: boolean) => void
   setFiles: (files: any) => void
   setSuccess: (success: boolean) => void
+  setFailure: (success: boolean) => void
 }) => {
   const [accessToken] = useAtom(accessTokenAtom)
   const [igId] = useAtom(igIdAtom)
 
+  const [caption, setCaption] = useState("")
+
   const uploadPost = async () => {
-    const res = await fetch(
+    const s3Res = await fetch(`/api/s3/upload`, {
+      method: "POST",
+      body: JSON.stringify({ name: files[0].name, type: files[0].type }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    const s3data = await s3Res.json()
+    console.log("🚀 ~ file: confirmPage.tsx:48 ~ uploadPost ~ s3data", s3data)
+
+    const uploadRes = await fetch(s3data.url, {
+      method: "PUT",
+      body: files[0],
+      headers: {
+        "Content-Type": files[0].type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+    // const uploadData = await uploadRes.json()
+    console.log(
+      "🚀 ~ file: confirmPage.tsx:59 ~ uploadPost ~ uploadRes",
+      uploadRes
+    )
+
+    const postRes = await fetch(
       `/api/fbGraph/igMedia?igUserId=${igId}&imageUrl=${
-        files[0].post
-      }&caption=${"sitetest"}&token=${accessToken}`,
+        s3data.url.split("?")[0]
+      }&caption=${caption}&token=${accessToken}`,
       {
         method: "POST",
       }
     )
-    const data = await res.json()
-    console.log("🚀 ~ file: confirmPage.tsx:49 ~ uploadPost ~ data", data)
+    const postData = await postRes.json()
+    console.log(
+      "🚀 ~ file: confirmPage.tsx:57 ~ uploadPost ~ postData",
+      postData
+    )
+
+    if (postData?.message?.id) {
+      const publishRes = await fetch(
+        `/api/fbGraph/igPublish?igUserId=${igId}&creationId=${postData?.message?.id}&token=${accessToken}`,
+        {
+          method: "POST",
+        }
+      )
+      const publishData = await publishRes.json()
+      console.log(
+        "🚀 ~ file: confirmPage.tsx:89 ~ uploadPost ~ publishData",
+        publishData
+      )
+    } else {
+      setFailure(true)
+    }
     setSuccess(true)
   }
 
@@ -97,6 +145,8 @@ const ConfirmPost = ({
             </button>
             <textarea
               placeholder="Caption"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
               className="my-4 h-24 w-full resize-none rounded border-[1px] border-white/25 bg-white/5 p-2  placeholder:text-neutral-600 hover:border-white/75 focus:border-white/75"
             />
             <div className="text-neutral-500">
@@ -159,6 +209,7 @@ const ConfirmPost = ({
                   setLoading(true)
                   setVerticalCheck(false)
                   setHorizontalCheck(false)
+
                   uploadPost()
                 }}
                 disabled={!dimensions.valid}
