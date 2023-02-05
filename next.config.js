@@ -8,14 +8,8 @@ const nextConfig = {
         hostname: "platform-lookaside.fbsbx.com"
       },
       {
-        hostname: "scontent.cdninstagram.com"
-      },
-      {
-        hostname: "cdninstagram.com"
-      },
-      {
-        hostname: "scontent-yyz1-1.cdninstagram.com"
-      },
+        hostname: "**.cdninstagram.com"
+      }
     ]
   }
 }
