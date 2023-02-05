@@ -93,6 +93,7 @@ const ConfirmPost = ({
         publishData
       )
     } else {
+      console.log("postData?.json?.id:", postData?.json?.id)
       setFailure(true)
     }
     setSuccess(true)
