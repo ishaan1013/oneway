@@ -24,7 +24,7 @@ export default async function handler(
   } 
   else if (method === 'POST') {
     try {
-      if (req.query.token && req.query.igUserId && req.query.imageUrl && req.query.caption) { 
+      if (req.query.token && req.query.igUserId && req.query.imageUrl) { 
         const data = await fetch(`https://graph.facebook.com/v15.0/${req.query.igUserId}/media?image_url=${req.query.imageUrl}&caption=${req.query.caption}&access_token=${req.query.token}`, {
           method: 'POST',
           headers: {
