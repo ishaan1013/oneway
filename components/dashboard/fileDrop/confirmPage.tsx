@@ -80,9 +80,9 @@ const ConfirmPost = ({
       postData
     )
 
-    if (postData?.message?.id) {
+    if (postData?.json?.id) {
       const publishRes = await fetch(
-        `/api/fbGraph/igPublish?igUserId=${igId}&creationId=${postData?.message?.id}&token=${accessToken}`,
+        `/api/fbGraph/igPublish?igUserId=${igId}&creationId=${postData?.json?.id}&token=${accessToken}`,
         {
           method: "POST",
         }
