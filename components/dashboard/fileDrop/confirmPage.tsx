@@ -50,7 +50,7 @@ const ConfirmPost = ({
       },
     })
     const s3data = await s3Res.json()
-    console.log("🚀 ~ file: confirmPage.tsx:48 ~ uploadPost ~ s3data", s3data)
+    console.log("🚀 ~ file: confirmPage.tsx:53 ~ uploadPost ~ s3data", s3data)
 
     const uploadRes = await fetch(s3data.url, {
       method: "PUT",
@@ -60,11 +60,11 @@ const ConfirmPost = ({
         "Access-Control-Allow-Origin": "*",
       },
     })
-    // const uploadData = await uploadRes.json()
     console.log(
-      "🚀 ~ file: confirmPage.tsx:59 ~ uploadPost ~ uploadRes",
+      "🚀 ~ file: confirmPage.tsx:63 ~ uploadPost ~ uploadRes",
       uploadRes
     )
+    // const uploadData = await uploadRes.json()
 
     const postRes = await fetch(
       `/api/fbGraph/igMedia?igUserId=${igId}&imageUrl=${
@@ -76,10 +76,11 @@ const ConfirmPost = ({
     )
     const postData = await postRes.json()
     console.log(
-      "🚀 ~ file: confirmPage.tsx:57 ~ uploadPost ~ postData",
+      "🚀 ~ file: confirmPage.tsx:78 ~ uploadPost ~ postData",
       postData
     )
 
+    console.log("1 postData?.json?.id:", postData?.json?.id)
     if (postData?.json?.id) {
       const publishRes = await fetch(
         `/api/fbGraph/igPublish?igUserId=${igId}&creationId=${postData?.json?.id}&token=${accessToken}`,
@@ -93,9 +94,10 @@ const ConfirmPost = ({
         publishData
       )
     } else {
-      console.log("postData?.json?.id:", postData?.json?.id)
+      console.log("2 postData?.json?.id:", postData?.json?.id)
       setFailure(true)
     }
+    console.log("3 postData?.json?.id:", postData?.json?.id)
     setSuccess(true)
   }
 
