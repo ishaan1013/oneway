@@ -14,6 +14,7 @@ const Post = ({ post }: { post: { media_url: string; id: string } }) => {
           800px"
           className="min-h-full min-w-full object-cover"
         />
+        <div className="absolute text-xs text-black">{post.media_url}</div>
       </div>
       <div className="absolute -top-16 -right-20 z-10 h-44 w-56 rounded-full bg-black opacity-0 blur-3xl duration-100 group-hover:opacity-100" />
       <div className="absolute top-2 right-2 z-10 flex space-x-1.5 opacity-0 duration-200 group-hover:opacity-100">
