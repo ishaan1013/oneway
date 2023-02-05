@@ -70,9 +70,7 @@ const AccountPopup = () => {
                 <div className="acct-select max-h-full w-full space-y-2 overflow-y-auto overflow-x-hidden py-6 pr-1">
                   {data?.data?.map((page: any, i: number) => {
                     return (
-                      <>
-                        <Page on={on} setOn={setOn} data={page} i={i} />
-                      </>
+                      <Page key={i} on={on} setOn={setOn} data={page} i={i} />
                     )
                   })}
                   {/* <p className="max-w-[250px] break-words text-xs">

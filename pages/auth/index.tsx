@@ -29,28 +29,27 @@ const Login = ({ providers }: { providers: any }) => {
           <div className="grid-gradient relative mt-[60vh] h-[40vh] w-full">
             <Image
               src={GridLg}
+              priority
               className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
               alt=""
             />
           </div>
-        ) : mediaSm ? (
+        ) : mediaSm && !mediaLg ? (
           <div className="grid-gradient relative mt-[55vh] h-[45vh] w-full">
             <Image
               src={Grid}
-              className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+              priority
+              className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
               alt=""
-              objectFit="cover"
-              layout="fill"
             />
           </div>
         ) : (
           <div className="grid-gradient relative mt-[55vh] h-[45vh] w-full">
             <Image
               src={GridSm}
-              className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+              priority
+              className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
               alt=""
-              objectFit="cover"
-              layout="fill"
             />
           </div>
         )}
@@ -75,18 +74,15 @@ const Login = ({ providers }: { providers: any }) => {
           public Instagram business accounts.
         </span>
       </p>
-      <p className="mt-2 text-center text-base text-neutral-500">
+      <p className="mt-3 text-center text-base text-neutral-500">
         The Instagram account must be{" "}
         <span className="font-bold text-white/60">
           connected to a Facebook page.
         </span>
       </p>
-      <p className="mt-8 text-center text-base text-neutral-500">
-        You can easily create a Facebook page and link to Instagram in the login
-        process.
-      </p>
-      <p className="mt-2 text-center text-base text-neutral-500">
-        There is no consequence to this — no one will see your Facebook page.
+      <p className="mt-3 text-center text-base text-neutral-500">
+        In the login screen, you can create a page and link an Instagram account
+        to it easily.
       </p>
     </main>
   )

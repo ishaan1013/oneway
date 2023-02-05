@@ -43,17 +43,11 @@ const Home = () => {
         </div> */}
         <div className="custom-gradient absolute -top-48 -z-20 h-48 w-2/3 max-w-6xl -rotate-12 opacity-50 blur-[150px]" />
         <div className="absolute -z-10 h-full w-full">
-          {/* {`The view port is ${
-            mediaLg
-              ? "at least 1024px"
-              : mediaSm
-              ? "at least 640px"
-              : "less than 640px"
-          }`} */}
           {mediaLg ? (
             <div className="grid-gradient relative mt-[60vh] h-[40vh] w-full">
               <Image
                 src={GridLg}
+                priority
                 className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
                 alt=""
               />
@@ -62,20 +56,18 @@ const Home = () => {
             <div className="grid-gradient relative mt-[55vh] h-[45vh] w-full">
               <Image
                 src={Grid}
-                className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+                priority
+                className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
                 alt=""
-                objectFit="cover"
-                layout="fill"
               />
             </div>
           ) : (
             <div className="grid-gradient relative mt-[55vh] h-[45vh] w-full">
               <Image
                 src={GridSm}
-                className="pointer-events-none absolute bottom-0 h-full w-full select-none"
+                priority
+                className="pointer-events-none absolute bottom-0 h-full w-full select-none object-cover"
                 alt=""
-                objectFit="cover"
-                layout="fill"
               />
             </div>
           )}
@@ -86,10 +78,10 @@ const Home = () => {
         </h2> */}
         {/* <h1 className="mb-1.5 text-center text-8xl font-bold opacity-70">
           Instagram
+        </h1> */}
+        <h1 className="mb-14 -translate-x-1 text-center text-6xl font-bold xs:text-7xl sm:text-8xl lg:text-9xl">
+          OneWay
         </h1>
-        <h2 className="mb-14 -translate-x-1 text-center text-8xl font-bold italic">
-          One Way
-        </h2> */}
         <LoginButton />
         <button className="mt-3 text-lg font-medium duration-200 hover:text-neutral-500">
           About This Project

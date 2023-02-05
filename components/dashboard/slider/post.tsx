@@ -9,6 +9,9 @@ const Post = ({ post }: { post: { media_url: string; id: string } }) => {
           src={post.media_url}
           alt="Instagram Post"
           fill={true}
+          sizes="(max-width: 479px) 700px,
+          (max-width: 767px) 750px,
+          800px"
           className="min-h-full min-w-full object-cover"
         />
       </div>
