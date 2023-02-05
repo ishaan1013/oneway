@@ -75,6 +75,7 @@ const FileDrop = () => {
                 Upload / Drop
               </div>
               <p className="text-sm text-neutral-500">.jpg or .jpeg</p>
+              <p className="text-sm text-neutral-500">maximum 8MB</p>
             </div>
           </UploadPage>
         </>

@@ -57,7 +57,6 @@ const Page = ({
         !on && setOpen(true)
         console.log("🚀 ~ file: page.tsx:31 ~ Page ~ on", on)
       }}
-      key={i}
       className={`${
         open
           ? "-translate-x-72"
