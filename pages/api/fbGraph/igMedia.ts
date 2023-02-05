@@ -32,10 +32,10 @@ export default async function handler(
           }
         })
         const json = await data.json()
-        res.status(200).json({ success: true, message: json })
+        res.status(200).json({ success: true, json })
       }
       else {
-        res.status(400).json({ success: false })
+        res.status(400).json({ success: false, query: JSON.stringify(req.query) })
       }
     }
     catch (error) {
